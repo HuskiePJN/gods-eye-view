@@ -63,14 +63,18 @@ way it:
 - starts Ollama if it is installed but not running.
 
 It does not load the model; Ollama loads it the first time voice uses it.
+
+Closing the app window shuts everything down about 15 seconds later: the
+server stops, a model that voice loaded is unloaded from memory, Ollama quits
+if the launcher started it, and the launcher's Terminal window closes.
+Closing the Terminal window, or pressing Ctrl+C in it, does the same.
 Put a link to it on the Desktop once:
 
 ```sh
 ln -s "$PWD/scripts/gev-launch.command" ~/Desktop/"God's Eye View.command"
 ```
 
-Leave the Terminal window it opens running while you use the app; closing it
-stops the app.
+Leave the Terminal window it opens running while you use the app.
 
 Optional settings, in `.env` (terminal) or `pinokio/ENVIRONMENT` (Pinokio):
 
