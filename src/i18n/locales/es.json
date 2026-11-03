@@ -3018,5 +3018,16 @@
   "Local model: none found — start Ollama and install a model": "Modelo local: no se encontró ninguno — inicia Ollama e instala un modelo",
   "Local model: {model} — click to switch; applies next session": "Modelo local: {model} — haz clic para cambiar; se aplica en la próxima sesión",
   "{model} applies next session": "{model} se aplica en la próxima sesión",
-  "Speech input unavailable here — type a command": "La entrada de voz no está disponible aquí — escribe un comando"
+  "Speech input unavailable here — type a command": "La entrada de voz no está disponible aquí — escribe un comando",
+  "Bus lines": "Líneas de autobús",
+  "Hide bus route lines (trains stay drawn)": "Ocultar líneas de autobús (los trenes siguen visibles)",
+  "Show bus route lines": "Mostrar líneas de autobús",
+  "Stop alerts": "Avisos en paradas",
+  "Hide closed and moved stop markers": "Ocultar paradas cerradas y trasladadas",
+  "Show closed and moved stop markers": "Mostrar paradas cerradas y trasladadas",
+  "Disrupted route": "Línea afectada",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "Discontinua: la línea tiene un retraso, desvío, suspensión, servicio sustitutorio, cancelación o cambio de servicio en vigor",
+  "Closed or moved stop": "Parada cerrada o trasladada",
+  "Ringed dot: click for the alert": "Punto con anillo: haz clic para ver el aviso",
+  "routes unavailable": "líneas no disponibles"
 }

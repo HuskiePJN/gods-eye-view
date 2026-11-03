@@ -11,6 +11,7 @@ import {
   isStopAlert,
 } from '../../data/transitNetwork.js';
 import { TRANSIT_MODE_ICON } from '../../data/transitFeeds.js';
+import { msg } from '../../i18n/index.js';
 
 /** How often an active feed's alert list is re-read (the proxy caches 60 s). */
 export const NETWORK_ALERTS_REFRESH_MS = 60_000;
@@ -513,7 +514,7 @@ export function createNetwork({ state, services, parts, source }) {
       net.routesFailures += 1;
       net.routesRetryAt =
         Date.now() + networkRetryDelayMs(net.routesFailures, error?.retryInSec);
-      net.error = 'routes unavailable';
+      net.error = msg('routes unavailable');
       console.warn(
         `[Data:Transit] ${net.feedId} routes unavailable: ${error?.message || error}`,
       );

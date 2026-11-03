@@ -3088,5 +3088,16 @@
   "Local model: none found — start Ollama and install a model": "Локальна модель: не знайдено — запустіть Ollama і встановіть модель",
   "Local model: {model} — click to switch; applies next session": "Локальна модель: {model} — натисніть, щоб змінити; застосується в наступному сеансі",
   "{model} applies next session": "{model} застосується в наступному сеансі",
-  "Speech input unavailable here — type a command": "Голосове введення тут недоступне — введіть команду"
+  "Speech input unavailable here — type a command": "Голосове введення тут недоступне — введіть команду",
+  "Bus lines": "Автобусні маршрути",
+  "Hide bus route lines (trains stay drawn)": "Сховати автобусні маршрути (потяги лишаються)",
+  "Show bus route lines": "Показати автобусні маршрути",
+  "Stop alerts": "Сповіщення про зупинки",
+  "Hide closed and moved stop markers": "Сховати закриті й перенесені зупинки",
+  "Show closed and moved stop markers": "Показати закриті й перенесені зупинки",
+  "Disrupted route": "Маршрут із порушеннями",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "Пунктир: на маршруті діє затримка, об’їзд, призупинення, заміна автобусом, скасування або зміна руху",
+  "Closed or moved stop": "Закрита або перенесена зупинка",
+  "Ringed dot: click for the alert": "Крапка в кільці: натисніть, щоб відкрити сповіщення",
+  "routes unavailable": "маршрути недоступні"
 }

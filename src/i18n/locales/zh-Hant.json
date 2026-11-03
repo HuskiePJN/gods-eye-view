@@ -2878,5 +2878,16 @@
   "Local model: none found — start Ollama and install a model": "本機模型：找不到 — 請啟動 Ollama 並安裝模型",
   "Local model: {model} — click to switch; applies next session": "本機模型：{model} — 點擊切換；下次工作階段生效",
   "{model} applies next session": "{model} 將在下次工作階段生效",
-  "Speech input unavailable here — type a command": "此處無法使用語音輸入 — 請輸入指令"
+  "Speech input unavailable here — type a command": "此處無法使用語音輸入 — 請輸入指令",
+  "Bus lines": "公車路線",
+  "Hide bus route lines (trains stay drawn)": "隱藏公車路線（列車仍顯示）",
+  "Show bus route lines": "顯示公車路線",
+  "Stop alerts": "站點提醒",
+  "Hide closed and moved stop markers": "隱藏關閉與遷移的站點",
+  "Show closed and moved stop markers": "顯示關閉與遷移的站點",
+  "Disrupted route": "受影響路線",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "虛線：該路線正發生延誤、繞行、停駛、接駁替代、取消或服務調整",
+  "Closed or moved stop": "關閉或遷移的站點",
+  "Ringed dot: click for the alert": "帶圈圓點：點擊查看提醒",
+  "routes unavailable": "路線無法使用"
 }

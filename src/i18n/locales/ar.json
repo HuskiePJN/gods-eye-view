@@ -3228,5 +3228,16 @@
   "Local model: none found — start Ollama and install a model": "النموذج المحلي: لا يوجد — شغّل Ollama وثبّت نموذجًا",
   "Local model: {model} — click to switch; applies next session": "النموذج المحلي: {model} — انقر للتبديل؛ يُطبَّق في الجلسة التالية",
   "{model} applies next session": "يُطبَّق {model} في الجلسة التالية",
-  "Speech input unavailable here — type a command": "إدخال الكلام غير متاح هنا — اكتب أمرًا"
+  "Speech input unavailable here — type a command": "إدخال الكلام غير متاح هنا — اكتب أمرًا",
+  "Bus lines": "خطوط الحافلات",
+  "Hide bus route lines (trains stay drawn)": "إخفاء خطوط الحافلات (تبقى القطارات ظاهرة)",
+  "Show bus route lines": "إظهار خطوط الحافلات",
+  "Stop alerts": "تنبيهات المحطات",
+  "Hide closed and moved stop markers": "إخفاء المحطات المغلقة والمنقولة",
+  "Show closed and moved stop markers": "إظهار المحطات المغلقة والمنقولة",
+  "Disrupted route": "خط متأثر",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "متقطع: يسري على الخط تأخير أو تحويل أو إيقاف أو خدمة بديلة أو إلغاء أو تغيير في الخدمة",
+  "Closed or moved stop": "محطة مغلقة أو منقولة",
+  "Ringed dot: click for the alert": "نقطة بحلقة: انقر لعرض التنبيه",
+  "routes unavailable": "الخطوط غير متاحة"
 }

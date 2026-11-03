@@ -2878,5 +2878,16 @@
   "Local model: none found — start Ollama and install a model": "本地模型：未找到 — 请启动 Ollama 并安装模型",
   "Local model: {model} — click to switch; applies next session": "本地模型：{model} — 点击切换；下次会话生效",
   "{model} applies next session": "{model} 将在下次会话生效",
-  "Speech input unavailable here — type a command": "此处无法使用语音输入 — 请输入命令"
+  "Speech input unavailable here — type a command": "此处无法使用语音输入 — 请输入命令",
+  "Bus lines": "公交线路",
+  "Hide bus route lines (trains stay drawn)": "隐藏公交线路（列车仍显示）",
+  "Show bus route lines": "显示公交线路",
+  "Stop alerts": "站点提醒",
+  "Hide closed and moved stop markers": "隐藏关闭和迁移的站点",
+  "Show closed and moved stop markers": "显示关闭和迁移的站点",
+  "Disrupted route": "受影响线路",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "虚线：该线路正在发生延误、绕行、停运、接驳替代、取消或服务调整",
+  "Closed or moved stop": "关闭或迁移的站点",
+  "Ringed dot: click for the alert": "带圈圆点：点击查看提醒",
+  "routes unavailable": "线路不可用"
 }

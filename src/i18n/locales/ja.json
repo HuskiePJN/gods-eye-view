@@ -2878,5 +2878,16 @@
   "Local model: none found — start Ollama and install a model": "ローカルモデル: 見つかりません — Ollama を起動してモデルをインストールしてください",
   "Local model: {model} — click to switch; applies next session": "ローカルモデル: {model} — クリックで切り替え（次のセッションから適用）",
   "{model} applies next session": "{model} は次のセッションから適用されます",
-  "Speech input unavailable here — type a command": "ここでは音声入力を使用できません — コマンドを入力してください"
+  "Speech input unavailable here — type a command": "ここでは音声入力を使用できません — コマンドを入力してください",
+  "Bus lines": "バス路線",
+  "Hide bus route lines (trains stay drawn)": "バス路線を隠す（鉄道は表示されたまま）",
+  "Show bus route lines": "バス路線を表示",
+  "Stop alerts": "停留所の情報",
+  "Hide closed and moved stop markers": "閉鎖・移設された停留所を隠す",
+  "Show closed and moved stop markers": "閉鎖・移設された停留所を表示",
+  "Disrupted route": "運行に支障のある路線",
+  "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "破線：遅延、迂回、運休、代行輸送、運行取りやめ、またはダイヤ変更が路線で発生中",
+  "Closed or moved stop": "閉鎖・移設された停留所",
+  "Ringed dot: click for the alert": "輪付きの点：クリックすると情報を表示",
+  "routes unavailable": "路線を取得できません"
 }

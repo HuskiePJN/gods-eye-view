@@ -1,4 +1,5 @@
 import { DISRUPTION_COLOR } from './network.js';
+import { t } from '../../i18n/index.js';
 
 /**
  * Manager wiring. Transit's data arrives from camera-driven proximity polls,
@@ -58,38 +59,39 @@ export function createControls({ state, parts }) {
         chips: [
           {
             id: 'transit-bus-lines',
-            label: 'Bus lines',
+            label: t('Bus lines'),
             active: busLines,
             params: { busLines: !busLines },
             title: busLines
-              ? 'Hide bus route lines (trains stay drawn)'
-              : 'Show bus route lines',
+              ? t('Hide bus route lines (trains stay drawn)')
+              : t('Show bus route lines'),
           },
           {
             id: 'transit-stop-alerts',
-            label: 'Stop alerts',
+            label: t('Stop alerts'),
             active: stopAlerts,
             params: { stopAlerts: !stopAlerts },
             title: stopAlerts
-              ? 'Hide closed and moved stop markers'
-              : 'Show closed and moved stop markers',
+              ? t('Hide closed and moved stop markers')
+              : t('Show closed and moved stop markers'),
           },
         ],
         legend: [
           {
             color: DISRUPTION_COLOR,
-            label: 'Disrupted route',
+            label: t('Disrupted route'),
             count: disrupted,
-            blurb:
+            blurb: t(
               'Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route',
+            ),
           },
           ...(stopAlerts
             ? [
                 {
                   color: DISRUPTION_COLOR,
-                  label: 'Closed or moved stop',
+                  label: t('Closed or moved stop'),
                   count: stops,
-                  blurb: 'Ringed dot: click for the alert',
+                  blurb: t('Ringed dot: click for the alert'),
                 },
               ]
             : []),
