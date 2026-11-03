@@ -3224,5 +3224,9 @@
   "Exit cockpit to fly to a drawing": "اخرج من القمرة للانتقال إلى رسم",
   "Directions, drawing and your own files": "الاتجاهات والرسم وملفاتك الخاصة",
   "Sea Marks": "علامات بحرية",
-  "Ski Pistes": "مسارات التزلج"
+  "Ski Pistes": "مسارات التزلج",
+  "Local model: none found — start Ollama and install a model": "النموذج المحلي: لا يوجد — شغّل Ollama وثبّت نموذجًا",
+  "Local model: {model} — click to switch; applies next session": "النموذج المحلي: {model} — انقر للتبديل؛ يُطبَّق في الجلسة التالية",
+  "{model} applies next session": "يُطبَّق {model} في الجلسة التالية",
+  "Speech input unavailable here — type a command": "إدخال الكلام غير متاح هنا — اكتب أمرًا"
 }

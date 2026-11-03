@@ -1,6 +1,7 @@
 import { createVoiceCommands as bindVoiceCommands } from './sessionCommands.js';
 import { createRealtimeSession } from './realtimeSession.js';
 import { createGeminiSession } from './geminiSession.js';
+import { createLocalSession } from './localSession.js';
 import { createProviderCommands } from './providerCommands.js';
 import { createVoicePanelHost } from './panel/host.js';
 
@@ -24,7 +25,9 @@ export function createVoiceCommands(options = {}) {
             panelHost,
             nativePanelProvider: settings.createController
               ? null
-              : settings.createSession === createRealtimeSession
+              : settings.createSession === createRealtimeSession ||
+                  // Same controller internals as OpenAI, local transport.
+                  settings.createSession === createLocalSession
                 ? 'openai'
                 : settings.createSession === createGeminiSession
                   ? 'gemini'
@@ -37,7 +40,11 @@ export function createVoiceCommands(options = {}) {
   if (!options.createSession && options.supportedProviders !== undefined)
     commands = createProviderCommands(options, {
       bind,
-      factories: { openai: createRealtimeSession, gemini: createGeminiSession },
+      factories: {
+        openai: createRealtimeSession,
+        gemini: createGeminiSession,
+        local: createLocalSession,
+      },
     });
   else commands = bind({ createSession: createRealtimeSession, ...options });
   if (panelHost) {

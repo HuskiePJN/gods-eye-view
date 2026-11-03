@@ -2944,5 +2944,9 @@
   "Exit cockpit to fly to a drawing": "Cockpit verlassen, um zu einer Zeichnung zu fliegen",
   "Directions, drawing and your own files": "Route, Zeichnen und eigene Dateien",
   "Sea Marks": "Seezeichen",
-  "Ski Pistes": "Skipisten"
+  "Ski Pistes": "Skipisten",
+  "Local model: none found — start Ollama and install a model": "Lokales Modell: keines gefunden — Ollama starten und ein Modell installieren",
+  "Local model: {model} — click to switch; applies next session": "Lokales Modell: {model} — klicken zum Wechseln; gilt ab der nächsten Sitzung",
+  "{model} applies next session": "{model} gilt ab der nächsten Sitzung",
+  "Speech input unavailable here — type a command": "Spracheingabe hier nicht verfügbar — Befehl eintippen"
 }

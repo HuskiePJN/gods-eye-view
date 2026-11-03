@@ -3084,5 +3084,9 @@
   "Exit cockpit to fly to a drawing": "Вийдіть із кабіни, щоб перелетіти до малюнка",
   "Directions, drawing and your own files": "Маршрути, малювання та ваші файли",
   "Sea Marks": "Морські знаки",
-  "Ski Pistes": "Гірськолижні траси"
+  "Ski Pistes": "Гірськолижні траси",
+  "Local model: none found — start Ollama and install a model": "Локальна модель: не знайдено — запустіть Ollama і встановіть модель",
+  "Local model: {model} — click to switch; applies next session": "Локальна модель: {model} — натисніть, щоб змінити; застосується в наступному сеансі",
+  "{model} applies next session": "{model} застосується в наступному сеансі",
+  "Speech input unavailable here — type a command": "Голосове введення тут недоступне — введіть команду"
 }

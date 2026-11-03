@@ -60,7 +60,12 @@ export class RealtimeConnection {
     this.input.pushToTalkMode = pushToTalk;
     this.input.pushToTalkKeyHeld = pushToTalkKeyHeld;
     this.input.spaceKeyHeld = spaceKeyHeld;
-    if (!window.RTCPeerConnection || !navigator.mediaDevices?.getUserMedia) {
+    // A local backend opens its own event channel instead of WebRTC.
+    const opensLocalChannel = typeof this.backend?.openChannel === 'function';
+    if (
+      (!opensLocalChannel && !window.RTCPeerConnection) ||
+      !navigator.mediaDevices?.getUserMedia
+    ) {
       this.setStatus('error', t('WebRTC microphone support unavailable'));
       return;
     }
@@ -101,21 +106,26 @@ export class RealtimeConnection {
       // (OPENAI_REALTIME_MODEL[_MINI]) can point a tier at a different model,
       // and pricing by the tier we asked for would then under-meter and let the
       // cap be overrun. Unrecognised ids bill at worst-case rates.
-      const costState = this.cost.bindServedModel(minted.model);
-      this.cost.bindTranscriptionModel?.(minted.transcribeModel);
-      if (!costState.ratesRecognized) {
-        console.warn(
-          `[GEV voice] unrecognised Realtime model "${costState.modelId}" — ` +
-            'billing this session at the most expensive known rates. Update the ' +
-            'rate table in src/voice/voiceCost.js.',
-        );
+      // A local model is not billed, so it has no rates to bind.
+      let ratesRecognized = null;
+      if (!minted.local) {
+        const costState = this.cost.bindServedModel(minted.model);
+        this.cost.bindTranscriptionModel?.(minted.transcribeModel);
+        ratesRecognized = costState.ratesRecognized;
+        if (!costState.ratesRecognized) {
+          console.warn(
+            `[GEV voice] unrecognised Realtime model "${costState.modelId}" — ` +
+              'billing this session at the most expensive known rates. Update the ' +
+              'rate table in src/voice/voiceCost.js.',
+          );
+        }
       }
       this.syncCostUi();
       this.debugLog('session.token.ready', {
         hasToken: Boolean(token),
         servedModel: minted.model || null,
         servedTier: minted.tier || null,
-        ratesRecognized: costState.ratesRecognized,
+        ratesRecognized,
       });
       localStream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -140,6 +150,21 @@ export class RealtimeConnection {
       this.audioEl.dataset.gevRealtimeAudio = 'true';
       this.audioEl.style.display = 'none';
       document.body.appendChild(this.audioEl);
+
+      if (opensLocalChannel) {
+        const channel = this.backend.openChannel({
+          credential: minted,
+          stream: localStream,
+          debugLog: (name, details) => this.debugLog(name, details),
+        });
+        this.dc = channel;
+        this.bindChannel(
+          channel,
+          () =>
+            epoch === this.startEpoch && !signal.aborted && this.dc === channel,
+        );
+        return;
+      }
 
       localPc = new RTCPeerConnection();
       this.pc = localPc;
@@ -176,47 +201,10 @@ export class RealtimeConnection {
 
       const dataChannel = this.pc.createDataChannel('oai-events');
       this.dc = dataChannel;
-      const ownsChannel = () => ownsConnection() && this.dc === dataChannel;
-      dataChannel.addEventListener('open', () => {
-        if (!ownsChannel()) return;
-        const detail = this.input.pushToTalkMode
-          ? this.input.pushToTalkKeyHeld
-            ? t('Release Space to send')
-            : t('Hold Space to talk')
-          : t('Ask or command');
-        this.setStatus('listening', detail);
-        this.debugLog('data_channel.open', {
-          connection: this.connectionDiagnostics(dataChannel),
-        });
-      });
-      dataChannel.addEventListener('message', (event) => {
-        if (ownsChannel() && dataChannel.readyState === 'open')
-          return this.handleRealtimeEvent(event);
-      });
-      dataChannel.addEventListener('error', (event) => {
-        // Skip if we're mid-teardown (the close we triggered) — otherwise a real
-        // channel error tears the session down so the mic doesn't stay live (H8).
-        if (this._tearingDown || !ownsChannel()) return;
-        this.fatalError(
-          'Realtime data channel',
-          event,
-          this.connectionDiagnostics(dataChannel),
-        );
-      });
-      dataChannel.addEventListener('close', () => {
-        if (this._tearingDown || !ownsChannel()) return;
-        if (
-          this.dc === dataChannel &&
-          this.status !== 'idle' &&
-          this.status !== 'error'
-        ) {
-          this.fatalError(
-            'Realtime data channel closed',
-            null,
-            this.connectionDiagnostics(dataChannel),
-          );
-        }
-      });
+      this.bindChannel(
+        dataChannel,
+        () => ownsConnection() && this.dc === dataChannel,
+      );
 
       const offer = await localPc.createOffer();
       if (this.abandonStart(epoch, { localStream, localPc })) return;
@@ -252,6 +240,50 @@ export class RealtimeConnection {
       this.stop({ preserveStatus: true });
       this.reportError('Realtime connection', error, diagnostics);
     }
+  }
+
+  /** Route one event channel's lifecycle (WebRTC or local) to the session. */
+  bindChannel(channel, ownsChannel) {
+    channel.addEventListener('open', () => {
+      if (!ownsChannel()) return;
+      const detail = this.input.pushToTalkMode
+        ? this.input.pushToTalkKeyHeld
+          ? t('Release Space to send')
+          : t('Hold Space to talk')
+        : t('Ask or command');
+      this.setStatus('listening', detail);
+      this.debugLog('data_channel.open', {
+        connection: this.connectionDiagnostics(channel),
+      });
+    });
+    channel.addEventListener('message', (event) => {
+      if (ownsChannel() && channel.readyState === 'open')
+        return this.handleRealtimeEvent(event);
+    });
+    channel.addEventListener('error', (event) => {
+      // Skip if we're mid-teardown (the close we triggered) — otherwise a real
+      // channel error tears the session down so the mic doesn't stay live (H8).
+      if (this._tearingDown || !ownsChannel()) return;
+      this.fatalError(
+        'Realtime data channel',
+        event,
+        this.connectionDiagnostics(channel),
+      );
+    });
+    channel.addEventListener('close', () => {
+      if (this._tearingDown || !ownsChannel()) return;
+      if (
+        this.dc === channel &&
+        this.status !== 'idle' &&
+        this.status !== 'error'
+      ) {
+        this.fatalError(
+          'Realtime data channel closed',
+          null,
+          this.connectionDiagnostics(channel),
+        );
+      }
+    });
   }
 
   // Returns true (and tears down the just-acquired resources) when this start()

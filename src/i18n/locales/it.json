@@ -3014,5 +3014,9 @@
   "Exit cockpit to fly to a drawing": "Esci dal cockpit per volare a un disegno",
   "Directions, drawing and your own files": "Indicazioni, disegno e i tuoi file",
   "Sea Marks": "Segnalamenti marittimi",
-  "Ski Pistes": "Piste da sci"
+  "Ski Pistes": "Piste da sci",
+  "Local model: none found — start Ollama and install a model": "Modello locale: nessuno trovato — avvia Ollama e installa un modello",
+  "Local model: {model} — click to switch; applies next session": "Modello locale: {model} — fai clic per cambiare; si applica dalla prossima sessione",
+  "{model} applies next session": "{model} si applica dalla prossima sessione",
+  "Speech input unavailable here — type a command": "Input vocale non disponibile qui — digita un comando"
 }
