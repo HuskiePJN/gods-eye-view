@@ -44,11 +44,33 @@ pick among the models Ollama reports as installed.
    ollama pull qwen3:30b
    ```
    Any installed chat model appears in the app. Check with `ollama list`.
-3. Start God's Eye View (`npm run dev`, Pinokio, or `./scripts/dev-fresh.sh`).
-4. Open **GEV MIC**, choose **Ollama** in the provider chooser and turn voice on.
-5. The button next to the chooser shows the model, for example `QWEN3:30B`.
-   Click it to step through your installed models. The change applies the
-   next time voice starts.
+3. Start God's Eye View: `npm run dev`, Pinokio, or the double-click
+   launcher below.
+4. Choose **Ollama** in the voice provider chooser and turn voice on.
+5. The model button shows the active model, for example `QWEN3:30B`. With the
+   voice panel it is under the gear (Voice Settings), in the "Voice model
+   tier" row. Click it to step through your installed models. The change
+   applies the next time voice starts.
+
+### Double-click launcher
+
+`scripts/gev-launch.command` starts the app, or reuses one already running,
+and opens it in its own Chrome window (or your default browser). Along the
+way it:
+
+- switches to Node 24 through nvm if the current Node is not supported;
+- installs project packages only when they are missing or changed;
+- starts Ollama if it is installed but not running.
+
+It does not load the model; Ollama loads it the first time voice uses it.
+Put a link to it on the Desktop once:
+
+```sh
+ln -s "$PWD/scripts/gev-launch.command" ~/Desktop/"God's Eye View.command"
+```
+
+Leave the Terminal window it opens running while you use the app; closing it
+stops the app.
 
 Optional settings, in `.env` (terminal) or `pinokio/ENVIRONMENT` (Pinokio):
 
