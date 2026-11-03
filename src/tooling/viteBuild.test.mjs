@@ -155,8 +155,18 @@ test('root config retains existing named exports and standalone provider order',
     standaloneProviders.indexOf('gemini-live-proxy'),
     standaloneProviders.indexOf('openai-realtime-proxy') + 1,
   );
+  // Local AI voice is the other opt-in provider, right after Gemini.
+  assert.equal(
+    standaloneProviders.filter((name) => name === 'local-ai-proxy').length,
+    1,
+  );
+  assert.equal(
+    standaloneProviders.indexOf('local-ai-proxy'),
+    standaloneProviders.indexOf('gemini-live-proxy') + 1,
+  );
+  const optIn = new Set(['gemini-live-proxy', 'local-ai-proxy']);
   assert.deepEqual(
-    standaloneProviders.filter((name) => name !== 'gemini-live-proxy'),
+    standaloneProviders.filter((name) => !optIn.has(name)),
     providers
       .localProviderPlugins({ nominatimStorageDir })
       .map((plugin) => plugin.name),
