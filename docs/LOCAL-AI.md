@@ -64,10 +64,10 @@ way it:
 
 It does not load the model; Ollama loads it the first time voice uses it.
 
-Closing the app window shuts everything down about 15 seconds later: the
-server stops, a model that voice loaded is unloaded from memory, Ollama quits
-if the launcher started it, and the launcher's Terminal window closes.
-Closing the Terminal window, or pressing Ctrl+C in it, does the same.
+Closing the app window shuts the app down about 15 seconds later: the server
+stops and the launcher's Terminal window closes. Closing the Terminal window,
+or pressing Ctrl+C in it, does the same. Ollama keeps running and unloads the
+model itself after `LOCAL_AI_KEEP_ALIVE`, since other apps may use it.
 Put a link to it on the Desktop once:
 
 ```sh

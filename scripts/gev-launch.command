@@ -2,9 +2,9 @@
 # God's Eye View — double-click launcher for macOS.
 #
 # Starts the app and opens it in its own window. Closing that window shuts
-# everything down: the app server stops, a local AI model loaded for voice is
-# unloaded, Ollama quits if this launcher started it, and this Terminal
-# window closes. Closing this Terminal window (or Ctrl+C) does the same.
+# the app down: the server stops and this Terminal window closes. Closing
+# this Terminal window (or Ctrl+C) does the same. Ollama is left to manage
+# its own models, since other apps may be using it.
 #
 # Uses what is already on the Mac and shared with other projects: Node from
 # nvm, and Ollama for Local AI voice. Project packages install only when they
@@ -72,23 +72,15 @@ if [[ ! -f node_modules/.package-lock.json || package-lock.json -nt node_modules
 fi
 
 # Ollama for Local AI voice: start the app if it is installed but not running.
-# Remember what was already loaded, so shutdown unloads only what we added.
-loaded_models() {
-  curl -sf "$OLLAMA_API/ps" | node -e \
-    'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{for(const m of JSON.parse(s).models||[])console.log(m.name)}catch{}})' \
-    2>/dev/null || true
-}
-STARTED_OLLAMA=0
+# Ollama then manages its own models and keeps running for other apps.
 if ! curl -sf -o /dev/null "$OLLAMA_API/tags"; then
   if [[ -d /Applications/Ollama.app ]]; then
     say "Starting Ollama…"
     open -ga Ollama
-    STARTED_OLLAMA=1
   else
     echo "Ollama is not running; Local AI voice will be unavailable until it is."
   fi
 fi
-MODELS_BEFORE="$(loaded_models)"
 
 SERVER_PID=""
 CHROME_PID=""
@@ -98,18 +90,7 @@ shutdown() {
   [[ -n "$CHROME_PID" ]] && kill "$CHROME_PID" 2>/dev/null || true
   # The server runs in its own process group; stop all of it.
   [[ -n "$SERVER_PID" ]] && kill -TERM -- "-$SERVER_PID" 2>/dev/null || true
-  if [[ "$STARTED_OLLAMA" == 1 ]]; then
-    osascript -e 'quit app "Ollama"' >/dev/null 2>&1 || true
-  else
-    for model in $(loaded_models); do
-      if ! grep -qxF "$model" <<<"$MODELS_BEFORE"; then
-        curl -sf -o /dev/null "$OLLAMA_API/generate" \
-          -d "{\"model\":\"$model\",\"keep_alive\":0}" || true
-        echo "Unloaded $model from memory."
-      fi
-    done
-  fi
-  echo "Stopped. Nothing from God's Eye View is left running."
+  echo "Stopped. The God's Eye View server is no longer running."
   # Close this Terminal window once the script has exited.
   local tty_name
   tty_name="$(tty 2>/dev/null || true)"
