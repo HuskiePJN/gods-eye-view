@@ -3073,5 +3073,6 @@
   "30–50% chance": "30–50% de chance",
   "50% or more": "50% ou mais",
   "Aurora": "Auroras",
-  "Peak chance {percent}%": "Chance máxima {percent}%"
+  "Peak chance {percent}%": "Chance máxima {percent}%",
+  "Command not sent — voice is not connected": "Comando não enviado — a voz não está conectada"
 }

@@ -35,9 +35,12 @@ open_app() {
   fi
 }
 
+# Is God's Eye View (not some other app on this port) already serving?
+is_running() { curl -sf "$URL" 2>/dev/null | grep -q "God's Eye View"; }
+
 # Already running from another launch? Just open a window; that launch owns
 # the shutdown.
-if curl -sf -o /dev/null "$URL"; then
+if is_running; then
   say "God's Eye View is already running."
   open_app
   exit 0
@@ -112,7 +115,7 @@ set +m
 
 for _ in $(seq 1 90); do
   sleep 1
-  curl -sf -o /dev/null "$URL" && break
+  is_running && break
 done
 open_app
 

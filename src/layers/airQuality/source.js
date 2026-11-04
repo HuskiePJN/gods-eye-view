@@ -169,28 +169,62 @@ export function createOpenMeteoAirQualitySource({
   };
 }
 
+/** How long a provider's last good readings stand in for a failed refresh. */
+const PROVIDER_RETAIN_MS = 2 * 60 * 60 * 1000;
+/** How long a failed provider is left alone before it is asked again. */
+const PROVIDER_BACKOFF_MS = 10 * 60 * 1000;
+
 /**
  * Every registered provider's readings in one snapshot, worst first. A
- * provider that fails is left out; only when all fail does the snapshot fail.
+ * provider that fails keeps showing its last good readings (for up to two
+ * hours) and is not asked again for ten minutes, so one failed poll does not
+ * blank half the map; only when no provider has anything does the snapshot
+ * fail.
  */
 export function createAirQualitySource({
   sources = [createEcccAirQualitySource(), createOpenMeteoAirQualitySource()],
+  now = () => Date.now(),
+  warn = (...args) => console.warn(...args),
 } = {}) {
+  const memory = sources.map(() => ({ rows: null, at: 0, failedAt: 0 }));
   return {
     async getSnapshot(options = {}) {
+      const clock = now();
       const results = await Promise.allSettled(
-        sources.map((source) => source.getSnapshot(options)),
+        sources.map((source, index) =>
+          memory[index].failedAt &&
+          clock - memory[index].failedAt < PROVIDER_BACKOFF_MS
+            ? Promise.reject(new Error('backing off'))
+            : source.getSnapshot(options),
+        ),
       );
       options.signal?.throwIfAborted();
-      const ok = results.filter((result) => result.status === 'fulfilled');
-      if (!ok.length) throw results[0].reason;
-      return ok
-        .flatMap((result) => result.value)
-        .sort(
-          (a, b) =>
-            airQualitySeverity(b) - airQualitySeverity(a) ||
-            a.id.localeCompare(b.id),
-        );
+      const readings = [];
+      let firstError = null;
+      results.forEach((result, index) => {
+        const slot = memory[index];
+        if (result.status === 'fulfilled') {
+          slot.rows = result.value;
+          slot.at = clock;
+          slot.failedAt = 0;
+          readings.push(...result.value);
+          return;
+        }
+        if (result.reason?.message !== 'backing off') {
+          slot.failedAt = clock;
+          warn('[Data:AirQuality] provider refresh failed:', result.reason);
+        }
+        firstError ??= result.reason;
+        if (slot.rows && clock - slot.at <= PROVIDER_RETAIN_MS)
+          readings.push(...slot.rows);
+      });
+      if (!readings.length && results.every((r) => r.status === 'rejected'))
+        throw firstError;
+      return readings.sort(
+        (a, b) =>
+          airQualitySeverity(b) - airQualitySeverity(a) ||
+          a.id.localeCompare(b.id),
+      );
     },
   };
 }

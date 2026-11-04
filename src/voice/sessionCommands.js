@@ -184,9 +184,14 @@ export function createVoiceCommands({
   const typeHandler = async (text) => {
     const command = String(text ?? '').trim();
     if (!command) return;
-    if (!session.isActive()) {
-      // start() resolves before a cloud channel is open; wait for the
-      // session to be listening (or give up after 30 s or on failure).
+    const notSent = () =>
+      ui.update('detail', {
+        text: () => t('Command not sent — voice is not connected'),
+      });
+    // While idle, failed or still connecting, the channel cannot take text:
+    // start() resolves before a cloud channel is open, so wait for the
+    // session to be listening (or give up after 30 s or on failure).
+    if (['idle', 'error', 'connecting'].includes(session.state)) {
       const listening = new Promise((resolve) => {
         const timer = setTimeout(() => done(false), 30_000);
         const off = session.subscribe((event) => {
@@ -200,13 +205,14 @@ export function createVoiceCommands({
           resolve(ok);
         }
       });
-      await session.start({ pushToTalk: true });
-      if (!(await listening)) return;
+      if (!session.isActive()) await session.start({ pushToTalk: true });
+      if (!(await listening)) return notSent();
     }
     try {
       session.sendText(command);
     } catch (error) {
       console.warn('[GEV voice] typed command not sent:', error?.message);
+      notSent();
     }
   };
   const offType = ui.on('type-command', typeHandler);

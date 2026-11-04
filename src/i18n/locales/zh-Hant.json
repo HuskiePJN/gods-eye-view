@@ -2933,5 +2933,6 @@
   "30–50% chance": "機率 30–50%",
   "50% or more": "50% 以上",
   "Aurora": "極光",
-  "Peak chance {percent}%": "最高機率 {percent}%"
+  "Peak chance {percent}%": "最高機率 {percent}%",
+  "Command not sent — voice is not connected": "指令未送出——語音未連線"
 }

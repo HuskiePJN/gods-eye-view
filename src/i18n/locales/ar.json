@@ -3283,5 +3283,6 @@
   "30–50% chance": "احتمال 30–50٪",
   "50% or more": "50٪ أو أكثر",
   "Aurora": "الشفق القطبي",
-  "Peak chance {percent}%": "أقصى احتمال {percent}٪"
+  "Peak chance {percent}%": "أقصى احتمال {percent}٪",
+  "Command not sent — voice is not connected": "لم يُرسل الأمر — الصوت غير متصل"
 }

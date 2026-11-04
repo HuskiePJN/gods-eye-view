@@ -197,7 +197,7 @@ export class LocationNavigation {
   _flyToSavedPlace(id) {
     const place = savedPlaces.list().find((entry) => entry.id === id);
     if (!place) return;
-    this._runExplicitNavigation('location', () => {
+    const result = this._runExplicitNavigation('location', () => {
       this.viewer.camera.flyTo({
         destination: Cesium.Cartesian3.fromDegrees(
           place.lon,
@@ -209,7 +209,15 @@ export class LocationNavigation {
       });
       return true;
     });
+    if (result === false) return;
+    // The tray follows as it does for a found search: no preset city or
+    // landmark is current any more.
     this._searchedLocationLabel = place.name;
+    this._setActiveLocation(null);
+    this._currentPoi = null;
+    this._currentTarget = null;
+    this._collapsePOIRow();
+    this._updateLocationMiniStatus();
   }
 
   _beginWorldJumpTransition() {

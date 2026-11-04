@@ -3143,5 +3143,6 @@
   "30–50% chance": "Ймовірність 30–50 %",
   "50% or more": "50 % і більше",
   "Aurora": "Полярні сяйва",
-  "Peak chance {percent}%": "Максимальна ймовірність {percent} %"
+  "Peak chance {percent}%": "Максимальна ймовірність {percent} %",
+  "Command not sent — voice is not connected": "Команду не надіслано — голос не підключено"
 }
