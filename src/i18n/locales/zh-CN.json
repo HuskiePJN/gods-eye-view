@@ -2923,5 +2923,14 @@
   "Voltage not reported": "未报告电压",
   "Line network response was incomplete": "线路网络响应不完整",
   "Line network unavailable": "线路网络不可用",
-  "United States only, from federal open data.": "仅限美国，来自联邦开放数据。"
+  "United States only, from federal open data.": "仅限美国，来自联邦开放数据。",
+  "Malformed aurora forecast": "极光预报格式错误",
+  "Aurora forecast unavailable": "极光预报不可用",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · {level} 级地磁暴",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · 无地磁暴",
+  "Forecast for {time}": "{time} 的预报",
+  "10–30% chance": "概率 10–30%",
+  "30–50% chance": "概率 30–50%",
+  "50% or more": "50% 或以上",
+  "Aurora": "极光"
 }

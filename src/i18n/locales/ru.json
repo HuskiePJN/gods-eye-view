@@ -3133,5 +3133,14 @@
   "Voltage not reported": "Напряжение не указано",
   "Line network response was incomplete": "Ответ сети линий был неполным",
   "Line network unavailable": "Сеть линий недоступна",
-  "United States only, from federal open data.": "Только США, по открытым федеральным данным."
+  "United States only, from federal open data.": "Только США, по открытым федеральным данным.",
+  "Malformed aurora forecast": "Некорректный прогноз полярных сияний",
+  "Aurora forecast unavailable": "Прогноз полярных сияний недоступен",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · геомагнитная буря {level}",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · геомагнитной бури нет",
+  "Forecast for {time}": "Прогноз на {time}",
+  "10–30% chance": "Вероятность 10–30 %",
+  "30–50% chance": "Вероятность 30–50 %",
+  "50% or more": "50 % и выше",
+  "Aurora": "Полярные сияния"
 }

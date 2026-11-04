@@ -436,6 +436,7 @@ Twenty layers and map sources. **Eighteen have a keyless path.** Some offer addi
 | 📡 **GNSS Integrity** | Regional navigation accuracy scores; anomalies do not confirm interference | adsb.lol, GPSJAM aggregation | 🟢 |
 | 🔥 **Fire Perimeters** | Incident boundaries and reported containment | WFIGS / NIFC | 🟢 |
 | ⚠️ **Weather Alerts** | Active US watches, warnings and advisories on their areas; click one for timing | NOAA National Weather Service | 🟢 |
+| 🌌 **Aurora** | Tonight's chance of seeing the northern and southern lights, with the Kp index | NOAA SWPC | 🟢 |
 | 🚆 **Railways** | US rail lines when zoomed in: passenger, freight main line, yards | BTS NTAD | 🟢 |
 | ⚡ **Power Grid** | US transmission lines when zoomed in, coloured by voltage | HIFLD | 🟢 |
 | 🚢 **Live Vessels**         | Thousands of ships worldwide                                                                                                                                                                                                                                                                                                                                                        | AISStream                               | 🟡                                                                                                  |

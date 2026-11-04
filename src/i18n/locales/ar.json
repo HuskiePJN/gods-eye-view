@@ -3273,5 +3273,14 @@
   "Voltage not reported": "الجهد غير مُبلغ",
   "Line network response was incomplete": "كانت استجابة شبكة الخطوط غير مكتملة",
   "Line network unavailable": "شبكة الخطوط غير متاحة",
-  "United States only, from federal open data.": "الولايات المتحدة فقط، من البيانات الفيدرالية المفتوحة."
+  "United States only, from federal open data.": "الولايات المتحدة فقط، من البيانات الفيدرالية المفتوحة.",
+  "Malformed aurora forecast": "توقعات الشفق تالفة",
+  "Aurora forecast unavailable": "توقعات الشفق غير متاحة",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · عاصفة مغناطيسية أرضية {level}",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · لا عاصفة مغناطيسية أرضية",
+  "Forecast for {time}": "التوقعات لـ {time}",
+  "10–30% chance": "احتمال 10–30٪",
+  "30–50% chance": "احتمال 30–50٪",
+  "50% or more": "50٪ أو أكثر",
+  "Aurora": "الشفق القطبي"
 }

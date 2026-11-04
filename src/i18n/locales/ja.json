@@ -2923,5 +2923,14 @@
   "Voltage not reported": "電圧不明",
   "Line network response was incomplete": "路線網の応答が不完全でした",
   "Line network unavailable": "路線網を利用できません",
-  "United States only, from federal open data.": "米国のみ。連邦政府のオープンデータより。"
+  "United States only, from federal open data.": "米国のみ。連邦政府のオープンデータより。",
+  "Malformed aurora forecast": "オーロラ予報の形式が不正です",
+  "Aurora forecast unavailable": "オーロラ予報を利用できません",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · 磁気嵐 {level}",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · 磁気嵐なし",
+  "Forecast for {time}": "{time} の予報",
+  "10–30% chance": "確率 10–30%",
+  "30–50% chance": "確率 30–50%",
+  "50% or more": "50% 以上",
+  "Aurora": "オーロラ"
 }

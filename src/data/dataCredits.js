@@ -180,6 +180,10 @@ export const DATA_CREDITS = [
       'Power grid: <a href="https://hifld-geoplatform.hub.arcgis.com/" target="_blank" rel="noopener">HIFLD</a> electric power transmission lines',
   },
   {
+    key: 'swpc-aurora',
+    html: 'Aurora forecast and Kp index: <a href="https://www.swpc.noaa.gov/products/aurora-30-minute-forecast" target="_blank" rel="noopener">NOAA Space Weather Prediction Center</a> (OVATION)',
+  },
+  {
     key: 'nws-alerts',
     html:
       'Weather alerts: ' +

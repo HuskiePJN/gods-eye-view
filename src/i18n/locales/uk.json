@@ -3133,5 +3133,14 @@
   "Voltage not reported": "Напругу не вказано",
   "Line network response was incomplete": "Відповідь мережі ліній була неповною",
   "Line network unavailable": "Мережа ліній недоступна",
-  "United States only, from federal open data.": "Лише США, за відкритими федеральними даними."
+  "United States only, from federal open data.": "Лише США, за відкритими федеральними даними.",
+  "Malformed aurora forecast": "Некоректний прогноз полярних сяйв",
+  "Aurora forecast unavailable": "Прогноз полярних сяйв недоступний",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · геомагнітна буря {level}",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · геомагнітної бурі немає",
+  "Forecast for {time}": "Прогноз на {time}",
+  "10–30% chance": "Ймовірність 10–30 %",
+  "30–50% chance": "Ймовірність 30–50 %",
+  "50% or more": "50 % і більше",
+  "Aurora": "Полярні сяйва"
 }

@@ -270,6 +270,12 @@ const layers = [
     },
   },
   {
+    id: 'aurora',
+    aliases: ['northern lights', 'space weather'],
+    context: false,
+    noQuery: 'map overlay; no countable records',
+  },
+  {
     id: 'weather-cyclones',
     aliases: ['cyclones', 'hurricanes', 'typhoons', 'tropical storms'],
     context: false,

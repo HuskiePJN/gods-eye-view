@@ -3063,5 +3063,14 @@
   "Voltage not reported": "Tensión no informada",
   "Line network response was incomplete": "La respuesta de la red de líneas estaba incompleta",
   "Line network unavailable": "Red de líneas no disponible",
-  "United States only, from federal open data.": "Solo Estados Unidos, con datos abiertos federales."
+  "United States only, from federal open data.": "Solo Estados Unidos, con datos abiertos federales.",
+  "Malformed aurora forecast": "Pronóstico de auroras mal formado",
+  "Aurora forecast unavailable": "Pronóstico de auroras no disponible",
+  "Kp {kp} · {level} geomagnetic storm": "Kp {kp} · tormenta geomagnética {level}",
+  "Kp {kp} · no geomagnetic storm": "Kp {kp} · sin tormenta geomagnética",
+  "Forecast for {time}": "Pronóstico para las {time}",
+  "10–30% chance": "10–30 % de probabilidad",
+  "30–50% chance": "30–50 % de probabilidad",
+  "50% or more": "50 % o más",
+  "Aurora": "Auroras"
 }
