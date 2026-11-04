@@ -238,7 +238,7 @@ export function createVoiceControl({
       publish();
     },
     /**
-     * Listen for an interaction the view reports: `button`, `tier`,
+     * Listen for an interaction the view reports: `button`, `type-command`, `tier`,
      * `provider-change`, `settings-button`, `settings-close`, `tab`,
      * `tab-keydown`, `panel-keydown`, `pointerenter`, `pointerleave`,
      * `preview-change`, `timeout-select`, `timeout-input`, `card-dismiss`;

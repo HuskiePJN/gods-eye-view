@@ -3029,5 +3029,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "Pointillés : un retard, une déviation, une suspension, une navette, une annulation ou un changement de service est en vigueur sur la ligne",
   "Closed or moved stop": "Arrêt fermé ou déplacé",
   "Ringed dot: click for the alert": "Point cerclé : cliquez pour voir l’alerte",
-  "routes unavailable": "lignes indisponibles"
+  "routes unavailable": "lignes indisponibles",
+  "Type a command": "Taper une commande",
+  "Type a command, then press Enter": "Tapez une commande, puis appuyez sur Entrée"
 }

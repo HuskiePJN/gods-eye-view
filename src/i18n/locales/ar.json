@@ -3239,5 +3239,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "متقطع: يسري على الخط تأخير أو تحويل أو إيقاف أو خدمة بديلة أو إلغاء أو تغيير في الخدمة",
   "Closed or moved stop": "محطة مغلقة أو منقولة",
   "Ringed dot: click for the alert": "نقطة بحلقة: انقر لعرض التنبيه",
-  "routes unavailable": "الخطوط غير متاحة"
+  "routes unavailable": "الخطوط غير متاحة",
+  "Type a command": "اكتب أمرًا",
+  "Type a command, then press Enter": "اكتب أمرًا ثم اضغط Enter"
 }

@@ -1,4 +1,5 @@
 <script setup>
+import { nextTick, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { formatNumber, t } from '../../../i18n/index.js';
 import { vClassToggle } from '../../rail/classToggle.js';
@@ -14,6 +15,26 @@ import UiSelect from '../../kit/UiSelect.js';
 defineProps({ view: { type: Object, required: true } });
 const { controls } = storeToRefs(useVoiceStore());
 const emit = (name, ...args) => controls.value?.emit(name, ...args);
+
+// The keyboard button swaps the provider row for a one-line command box.
+// Enter sends and keeps it open for the next command; Escape closes it.
+const typing = ref(false);
+const typeInput = ref(null);
+const toggleTyping = async () => {
+  typing.value = !typing.value;
+  if (!typing.value) return;
+  await nextTick();
+  typeInput.value?.focus();
+};
+const closeTyping = () => {
+  typing.value = false;
+};
+const sendTyped = () => {
+  const text = typeInput.value?.value.trim();
+  if (!text) return;
+  emit('type-command', text);
+  typeInput.value.value = '';
+};
 
 // A value the owner may restore after a refused change; written on every
 // render, as the owner's own writes were.
@@ -54,10 +75,17 @@ const rootData = (root) => ({
 
 <template>
   <div id="gev-voice-control" v-bind="rootData(view.root)" v-class-toggle="{ 'error-dismissed': view.root.errorDismissed }" @pointerleave="emit('pointerleave', $event)" @pointerenter="emit('pointerenter', $event)">
-      <label id="gev-voice-provider-field" class="gev-voice-provider-field" :hidden="view.provider.hidden">
-        <span>{{ t('Voice provider') }}</span>
-        <UiSelect id="gev-voice-provider" class="gev-field" :aria-label="t('Voice provider')" :title="view.provider.title" :model-value="view.provider.value" @update:model-value="emit('provider-change', $event)"><option v-for="option in view.provider.options" :key="option.value" :value="option.value">{{ option.label }}</option></UiSelect>
+      <label id="gev-voice-provider-field" class="gev-voice-provider-field" :hidden="view.provider.hidden && !typing">
+        <template v-if="typing">
+          <span>{{ t('Type a command') }}</span>
+          <input ref="typeInput" id="gev-voice-type-input" class="gev-field" type="text" maxlength="2000" autocomplete="off" :placeholder="t('Type a command, then press Enter')" @keydown.enter.prevent="sendTyped" @keydown.esc.prevent="closeTyping" />
+        </template>
+        <template v-else>
+          <span>{{ t('Voice provider') }}</span>
+          <UiSelect id="gev-voice-provider" class="gev-field" :aria-label="t('Voice provider')" :title="view.provider.title" :model-value="view.provider.value" @update:model-value="emit('provider-change', $event)"><option v-for="option in view.provider.options" :key="option.value" :value="option.value">{{ option.label }}</option></UiSelect>
+        </template>
       </label>
+      <button v-if="view.panel" id="gev-voice-type-button" class="gev-voice-settings-button gev-voice-type-button" type="button" :aria-label="t('Type a command')" :title="t('Type a command')" :aria-pressed="String(typing)" @click="toggleTyping"><span class="material-symbols-outlined gev-voice-settings-icon" aria-hidden="true">keyboard</span></button>
       <button v-if="view.panel" id="gev-voice-settings-button" class="gev-voice-settings-button" type="button" :aria-label="t('Voice Settings')" aria-controls="gev-voice-panel" :aria-expanded="String(view.voicePanel.settingsExpanded)" @click="emit('settings-button')"><span class="material-symbols-outlined gev-voice-settings-icon" aria-hidden="true">settings</span></button>
       <div class="gev-voice-heading">
         <div class="gev-voice-kicker">{{ t('AI AGENT') }}</div>

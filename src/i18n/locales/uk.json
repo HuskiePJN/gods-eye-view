@@ -3099,5 +3099,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "Пунктир: на маршруті діє затримка, об’їзд, призупинення, заміна автобусом, скасування або зміна руху",
   "Closed or moved stop": "Закрита або перенесена зупинка",
   "Ringed dot: click for the alert": "Крапка в кільці: натисніть, щоб відкрити сповіщення",
-  "routes unavailable": "маршрути недоступні"
+  "routes unavailable": "маршрути недоступні",
+  "Type a command": "Ввести команду",
+  "Type a command, then press Enter": "Введіть команду й натисніть Enter"
 }

@@ -179,11 +179,21 @@ export function createVoiceCommands({
     } else void session.start({ pushToTalk: false });
   };
   const offButton = ui.on('button', buttonHandler);
+  // The dock's keyboard box: a typed command turns voice on first, with the
+  // microphone held to push-to-talk, so typing never needs speech.
+  const typeHandler = async (text) => {
+    const command = String(text ?? '').trim();
+    if (!command) return;
+    if (!session.isActive()) await session.start({ pushToTalk: true });
+    if (session.isActive()) session.sendText(command);
+  };
+  const offType = ui.on('type-command', typeHandler);
   let cleaned = false;
   const cleanup = () => {
     if (cleaned) return;
     cleaned = true;
     offButton();
+    offType();
     offProvider?.();
     annotationUnsubscribe?.();
     updateStatus();

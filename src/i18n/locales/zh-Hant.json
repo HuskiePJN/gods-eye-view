@@ -2889,5 +2889,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "虛線：該路線正發生延誤、繞行、停駛、接駁替代、取消或服務調整",
   "Closed or moved stop": "關閉或遷移的站點",
   "Ringed dot: click for the alert": "帶圈圓點：點擊查看提醒",
-  "routes unavailable": "路線無法使用"
+  "routes unavailable": "路線無法使用",
+  "Type a command": "輸入指令",
+  "Type a command, then press Enter": "輸入指令，然後按 Enter"
 }

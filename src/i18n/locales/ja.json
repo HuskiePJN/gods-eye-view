@@ -2889,5 +2889,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "破線：遅延、迂回、運休、代行輸送、運行取りやめ、またはダイヤ変更が路線で発生中",
   "Closed or moved stop": "閉鎖・移設された停留所",
   "Ringed dot: click for the alert": "輪付きの点：クリックすると情報を表示",
-  "routes unavailable": "路線を取得できません"
+  "routes unavailable": "路線を取得できません",
+  "Type a command": "コマンドを入力",
+  "Type a command, then press Enter": "コマンドを入力して Enter を押す"
 }

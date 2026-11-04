@@ -309,6 +309,39 @@ html:not([lang='en'])
     100% + var(--gev-provider-lift, 0px) + var(--gev-voice-settings-gap) + 7px
   );
 }
+/* The keyboard button sits left of the gear; its command box takes the
+   provider row while it is open. */
+#gev-voice-control:has(> .gev-voice-type-button)
+  .gev-voice-provider-field:not([hidden]) {
+  left: -40px;
+  padding-right: 86px;
+}
+#gev-voice-control .gev-voice-type-button {
+  right: calc(0.25rem + 40px);
+}
+#gev-voice-control[data-provider-choice='true']:has(
+    .gev-voice-provider-field:not([hidden])
+  )
+  .gev-voice-type-button {
+  right: 47px;
+}
+#gev-voice-control .gev-voice-provider-field input {
+  flex: 1;
+  min-width: 0;
+  min-height: 34px;
+  padding: 0 8px;
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  background: #09121b;
+  color: var(--text-primary, #e6f4f8);
+  font: inherit;
+  font-size: 0.7rem;
+}
+#gev-voice-control .gev-voice-provider-field input:focus-visible {
+  outline: 2px solid var(--voice-panel-accent, var(--accent));
+  outline-offset: 1px;
+}
+#gev-voice-control .gev-voice-type-button[aria-pressed='true'],
 #gev-voice-control
   .gev-voice-settings-button:is(:hover, [aria-expanded='true']) {
   color: var(--voice-panel-accent, var(--accent));

@@ -3029,5 +3029,7 @@
   "Dashed: a delay, detour, suspension, shuttle, cancellation or service change is in force on the route": "Tratteggio: sulla linea è in vigore un ritardo, una deviazione, una sospensione, un servizio sostitutivo, una cancellazione o una modifica del servizio",
   "Closed or moved stop": "Fermata chiusa o spostata",
   "Ringed dot: click for the alert": "Punto cerchiato: fai clic per l’avviso",
-  "routes unavailable": "linee non disponibili"
+  "routes unavailable": "linee non disponibili",
+  "Type a command": "Digita un comando",
+  "Type a command, then press Enter": "Digita un comando, poi premi Invio"
 }
