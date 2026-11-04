@@ -78,6 +78,20 @@ const layers = [
     noQuery: 'raster tile overlay; no countable records',
   },
   {
+    id: 'railways',
+    aliases: ['railroads', 'train tracks'],
+    context: false,
+    noQuery:
+      'OpenStreetMap lines for the city-sized view; no countable records',
+  },
+  {
+    id: 'power-grid',
+    aliases: ['power lines', 'transmission lines'],
+    context: false,
+    noQuery:
+      'OpenStreetMap lines for the city-sized view; no countable records',
+  },
+  {
     id: 'ski-pistes',
     aliases: ['ski slopes', 'ski runs', 'snow map', 'opensnowmap'],
     context: false,
@@ -240,14 +254,7 @@ const layers = [
   },
   {
     id: 'weather-alerts',
-    aliases: [
-      'weather alerts',
-      'weather warnings',
-      'severe weather',
-      'warnings',
-      'watches',
-      'nws alerts',
-    ],
+    aliases: ['weather warnings', 'severe weather', 'nws alerts'],
     context: false,
     query: {
       fields: {

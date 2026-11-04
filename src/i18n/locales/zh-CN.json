@@ -2910,5 +2910,18 @@
   "+ SAVE": "+ 保存",
   "Worldwide model estimate · Open-Meteo US AQI": "全球模型估算 · Open-Meteo US AQI",
   "Malformed Open-Meteo air-quality response": "Open-Meteo 空气质量响应格式错误",
-  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "加拿大：ECCC AQHI 站点 · 其他地区：Open-Meteo US AQI 模型估算"
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "加拿大：ECCC AQHI 站点 · 其他地区：Open-Meteo US AQI 模型估算",
+  "345 kV and above": "345 kV 及以上",
+  "100–344 kV": "100–344 kV",
+  "Under 100 kV": "低于 100 kV",
+  "Zoom in to about city scale to load lines.": "放大到城市级别以加载线路。",
+  "Railways": "铁路",
+  "Power Grid": "电网",
+  "Passenger service": "客运线路",
+  "Main line (freight)": "干线（货运）",
+  "Yards, sidings and spurs": "编组站、侧线和支线",
+  "Voltage not reported": "未报告电压",
+  "Line network response was incomplete": "线路网络响应不完整",
+  "Line network unavailable": "线路网络不可用",
+  "United States only, from federal open data.": "仅限美国，来自联邦开放数据。"
 }

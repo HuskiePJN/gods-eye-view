@@ -3050,5 +3050,18 @@
   "+ SAVE": "+ GUARDAR",
   "Worldwide model estimate · Open-Meteo US AQI": "Estimación de modelo mundial · Open-Meteo US AQI",
   "Malformed Open-Meteo air-quality response": "Respuesta de calidad del aire de Open-Meteo mal formada",
-  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Canadá: estaciones AQHI de ECCC · resto: estimaciones de modelo US AQI de Open-Meteo"
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Canadá: estaciones AQHI de ECCC · resto: estimaciones de modelo US AQI de Open-Meteo",
+  "345 kV and above": "345 kV o más",
+  "100–344 kV": "100–344 kV",
+  "Under 100 kV": "Menos de 100 kV",
+  "Zoom in to about city scale to load lines.": "Acércate a escala de ciudad para cargar las líneas.",
+  "Railways": "Ferrocarriles",
+  "Power Grid": "Red eléctrica",
+  "Passenger service": "Servicio de pasajeros",
+  "Main line (freight)": "Línea principal (mercancías)",
+  "Yards, sidings and spurs": "Patios, apartaderos y ramales",
+  "Voltage not reported": "Tensión no informada",
+  "Line network response was incomplete": "La respuesta de la red de líneas estaba incompleta",
+  "Line network unavailable": "Red de líneas no disponible",
+  "United States only, from federal open data.": "Solo Estados Unidos, con datos abiertos federales."
 }

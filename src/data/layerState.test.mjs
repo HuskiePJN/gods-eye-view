@@ -202,8 +202,8 @@ function encode(state) {
 
 test('production registry is exact, canonical, and rejects incomplete contracts', async () => {
   assert.equal(validateLayerStateRegistry(), true);
-  assert.equal(REGISTERED_LAYER_IDS.length, 35);
-  assert.equal(new Set(REGISTERED_LAYER_IDS).size, 35);
+  assert.equal(REGISTERED_LAYER_IDS.length, 37);
+  assert.equal(new Set(REGISTERED_LAYER_IDS).size, 37);
   assert.ok(REGISTERED_LAYER_IDS.includes('transit'));
   assert.deepEqual(REGISTERED_LAYER_IDS, [...REGISTERED_LAYER_IDS].sort());
   assert.deepEqual(LEGACY_LAYER_STATE_TOKENS, {
@@ -244,7 +244,7 @@ test('production registry is exact, canonical, and rejects incomplete contracts'
   }
   // The digit and pair boundaries are checked against the upstream ledger;
   // layers this fork added took the next digits.
-  const FORK_LAYER_IDS = new Set(['weather-alerts']);
+  const FORK_LAYER_IDS = new Set(['weather-alerts', 'railways', 'power-grid']);
   const UPSTREAM_RESERVATIONS = Object.fromEntries(
     Object.entries(LAYER_STATE_TOKEN_RESERVATIONS).filter(
       ([id]) => !FORK_LAYER_IDS.has(id),
@@ -506,7 +506,8 @@ test('unknown enabled-layer tokens reject the payload instead of becoming an emp
 });
 
 test('malformed enabled-layer lists reject the entire payload', () => {
-  for (const value of ['.c', 'c.', 'c..e', 'c.c', '00', 'c.00']) {
+  // An unreserved pair: a token no layer owns.
+  for (const value of ['.c', 'c.', 'c..e', 'c.c', 'zy', 'c.zy']) {
     assert.equal(
       decodeLayerStateParams(new URLSearchParams(`v=2&l=${value}`)),
       null,

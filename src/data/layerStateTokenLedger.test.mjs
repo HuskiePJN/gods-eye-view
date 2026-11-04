@@ -46,7 +46,7 @@ const reservationRows = JSON.parse(
 // Layers this fork added after the upstream ledger. Tests of the digit and
 // pair boundaries use the upstream rows; the rest allocate after the live
 // ledger, so they keep working as layers are added.
-const FORK_LAYER_IDS = new Set(['weather-alerts']);
+const FORK_LAYER_IDS = new Set(['weather-alerts', 'railways', 'power-grid']);
 const upstreamRows = reservationRows.filter(([id]) => !FORK_LAYER_IDS.has(id));
 const NEXT = nextLayerStateToken(
   parseLayerStateTokenReservations(reservationRows),
@@ -155,6 +155,8 @@ test('reservation ledger is complete, pinned, and rejects duplicate or malformed
       'sea-marks': '6',
       'ski-pistes': '7',
       'weather-alerts': '8',
+      railways: '9',
+      'power-grid': '00',
     },
   );
   assert.throws(

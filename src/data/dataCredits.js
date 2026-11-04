@@ -174,6 +174,12 @@ export const DATA_CREDITS = [
       '<a href="https://lpdaac.usgs.gov/products/hlss30v002/" target="_blank" rel="noopener">HLS product page</a>',
   },
   {
+    key: 'us-line-networks',
+    html:
+      'Railways: <a href="https://www.bts.gov/ntad" target="_blank" rel="noopener">BTS National Transportation Atlas Database</a> (North American Rail Network) · ' +
+      'Power grid: <a href="https://hifld-geoplatform.hub.arcgis.com/" target="_blank" rel="noopener">HIFLD</a> electric power transmission lines',
+  },
+  {
     key: 'nws-alerts',
     html:
       'Weather alerts: ' +

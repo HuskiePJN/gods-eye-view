@@ -34,6 +34,7 @@
     "▲ {frp} MW"
   ],
   "de": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -202,6 +203,7 @@
     "▲ {frp} MW"
   ],
   "es": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -330,6 +332,7 @@
     "▲ {frp} MW"
   ],
   "fr": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "ALTITUDE",
@@ -511,6 +514,7 @@
     "▲ {frp} MW"
   ],
   "it": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AFRICA",
@@ -682,6 +686,7 @@
     "▲ {frp} MW"
   ],
   "ja": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -731,6 +736,7 @@
     "▲ {frp} MW"
   ],
   "pt": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -891,6 +897,7 @@
     "WHOT/BHOT"
   ],
   "zh-CN": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -916,9 +923,9 @@
     "MM",
     "NVG",
     "REC",
-    "SRC {value}",
     "S2 GhostMaps",
     "S2 · {name}",
+    "SRC {value}",
     "Sentinel-2",
     "Techno",
     "Trance",
@@ -948,6 +955,7 @@
     "▲ {frp} MW"
   ],
   "zh-Hant": [
+    "100–344 kV",
     "1090 MHz",
     "978 MHz UAT",
     "AIS: --",
@@ -973,9 +981,9 @@
     "MM",
     "NVG",
     "REC",
-    "SRC {value}",
     "S2 GhostMaps",
     "S2 · {name}",
+    "SRC {value}",
     "Sentinel-2",
     "Techno",
     "Trance",

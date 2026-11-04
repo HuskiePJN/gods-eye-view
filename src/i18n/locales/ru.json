@@ -3120,5 +3120,18 @@
   "+ SAVE": "+ СОХРАНИТЬ",
   "Worldwide model estimate · Open-Meteo US AQI": "Модельная оценка по всему миру · Open-Meteo US AQI",
   "Malformed Open-Meteo air-quality response": "Некорректный ответ Open-Meteo о качестве воздуха",
-  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Канада: станции AQHI ECCC · остальной мир: модельные оценки US AQI от Open-Meteo"
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Канада: станции AQHI ECCC · остальной мир: модельные оценки US AQI от Open-Meteo",
+  "345 kV and above": "345 кВ и выше",
+  "100–344 kV": "100–344 кВ",
+  "Under 100 kV": "Ниже 100 кВ",
+  "Zoom in to about city scale to load lines.": "Приблизьте до масштаба города, чтобы загрузить линии.",
+  "Railways": "Железные дороги",
+  "Power Grid": "Электросеть",
+  "Passenger service": "Пассажирское движение",
+  "Main line (freight)": "Магистраль (грузовая)",
+  "Yards, sidings and spurs": "Станции, разъезды и подъездные пути",
+  "Voltage not reported": "Напряжение не указано",
+  "Line network response was incomplete": "Ответ сети линий был неполным",
+  "Line network unavailable": "Сеть линий недоступна",
+  "United States only, from federal open data.": "Только США, по открытым федеральным данным."
 }

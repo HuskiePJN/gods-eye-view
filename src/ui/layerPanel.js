@@ -66,6 +66,8 @@ const PANEL_GROUPS = [
       'local-dams',
       'sea-marks',
       'ski-pistes',
+      'railways',
+      'power-grid',
     ],
   },
   {
