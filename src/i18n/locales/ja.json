@@ -2907,5 +2907,8 @@
   "Saved {name}": "{name} を保存しました",
   "Could not save this view": "このビューを保存できませんでした",
   "Save this view as a place": "このビューを場所として保存",
-  "+ SAVE": "＋ 保存"
+  "+ SAVE": "＋ 保存",
+  "Worldwide model estimate · Open-Meteo US AQI": "世界のモデル推定値 · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "Open-Meteo の大気質レスポンスの形式が不正です",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "カナダ: ECCC AQHI 観測所 · その他: Open-Meteo US AQI モデル推定値"
 }

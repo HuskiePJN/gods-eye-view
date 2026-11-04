@@ -12,8 +12,10 @@
  * network can be added without retrofitting a shared numeric meaning that does
  * not exist.
  *
- * Only ECCC's AQHI is implemented here; `AIR_QUALITY_PROVIDERS` is the seam a
- * later provider registers against.
+ * Two providers are registered: ECCC's AQHI stations in Canada, and
+ * Open-Meteo's modelled US AQI at sample cities elsewhere. Readings on
+ * different scales are ranked by band (`airQualitySeverity`), never by
+ * comparing their numbers.
  */
 // A portable export (package.json): no i18n here. The labels stay English data;
 // the Weather card (index.js) shows them translated.
@@ -123,7 +125,92 @@ export const AIR_QUALITY_PROVIDERS = Object.freeze({
       Object.freeze({ id: 'very-high', max: Infinity }),
     ]),
   }),
+  'open-meteo': Object.freeze({
+    id: 'open-meteo',
+    scale: 'US AQI',
+    label: msg('Air quality'),
+    network: 'Open-Meteo (CAMS)',
+    coverage: msg('Worldwide model estimate · Open-Meteo US AQI'),
+    /**
+     * US EPA categories folded onto the shared bands: Good, Moderate,
+     * Unhealthy for Sensitive Groups and Unhealthy, then Very Unhealthy and
+     * Hazardous.
+     */
+    bands: Object.freeze([
+      Object.freeze({ id: 'low', max: 50 }),
+      Object.freeze({ id: 'moderate', max: 100 }),
+      Object.freeze({ id: 'high', max: 200 }),
+      Object.freeze({ id: 'very-high', max: Infinity }),
+    ]),
+  }),
 });
+
+/**
+ * A comparable severity across scales: the band first, then the value within
+ * it. Worse air ranks higher.
+ */
+export function airQualitySeverity(reading) {
+  const rank = AIR_QUALITY_BANDS.findIndex((band) => band.id === reading?.band);
+  const value = Number(reading?.value);
+  return (
+    (rank + 1) * 1000 + (Number.isFinite(value) ? Math.min(value, 999) : 0)
+  );
+}
+
+/**
+ * Join Open-Meteo's multi-location `current` answer onto the sample points
+ * into provider-shaped rows. The answer lists locations in request order.
+ * @param {Array<object>|object} payload - One object, or an array of them.
+ * @param {Array<[string, number, number]>} points - The requested points.
+ * @param {number} [now=Date.now()]
+ * @param {number} [offset=0] - The first point's index in the full list.
+ * @returns {Array<object>|null} Readings, or null when malformed.
+ */
+export function normalizeOpenMeteoAirQuality(
+  payload,
+  points,
+  now = Date.now(),
+  offset = 0,
+) {
+  const rows = Array.isArray(payload) ? payload : [payload];
+  if (!Array.isArray(points) || rows.length !== points.length) return null;
+  const provider = AIR_QUALITY_PROVIDERS['open-meteo'];
+  const readings = [];
+  rows.forEach((row, index) => {
+    const current = row?.current;
+    const [name, lat, lon] = points[index];
+    const raw = current?.us_aqi;
+    if (typeof raw !== 'number' || !Number.isFinite(raw) || raw < 0) return;
+    const value = Math.round(raw);
+    // Times are requested in GMT and come without an offset.
+    const observedMs = Date.parse(`${current.time}Z`);
+    if (
+      !Number.isFinite(observedMs) ||
+      now - observedMs > OBSERVATION_MAX_AGE_MS
+    )
+      return;
+    const band = bandForValue(provider.id, value);
+    const pm25 = Number(current.pm2_5);
+    readings.push({
+      id: `${provider.id}:${offset + index}`,
+      provider: provider.id,
+      scale: provider.scale,
+      value,
+      band,
+      stationId: `point-${offset + index}`,
+      name,
+      zone: '',
+      lat,
+      lon,
+      observedMs,
+      color: airQualityColor(band),
+      label: valueLabel(provider.id, value),
+      risk: bandRiskText(band),
+      note: Number.isFinite(pm25) ? `PM2.5 ${Math.round(pm25)} µg/m³` : null,
+    });
+  });
+  return readings;
+}
 
 /** Band descriptor for an id, or null. */
 export function airQualityBandById(bandId) {
@@ -179,6 +266,8 @@ export function bandForValue(providerId, value) {
 export function valueLabel(providerId, value) {
   if (!Number.isFinite(value)) return '--';
   if (providerId === 'eccc') return value > 10 ? '10+' : String(value);
+  // The US AQI scale ends at 500; a model may estimate beyond it.
+  if (providerId === 'open-meteo') return value > 500 ? '500+' : String(value);
   return String(value);
 }
 
@@ -308,7 +397,7 @@ export function createAirQualityOverlayEntry({
     title,
     accent,
     // Worse air wins the label budget — the reading people need to see first.
-    priority: Math.round(Number(value) || 0) * 1000,
+    priority: Math.round(Number(value) || 0),
     collisionGroup: 'ambient-label',
     paintLane: 'ambient-label',
     interactive: false,
@@ -367,7 +456,11 @@ export function readingsInView(readings, rect, limit = 5) {
       });
   return inside
     .slice()
-    .sort((a, b) => b.value - a.value || a.stationId.localeCompare(b.stationId))
+    .sort(
+      (a, b) =>
+        airQualitySeverity(b) - airQualitySeverity(a) ||
+        a.stationId.localeCompare(b.stationId),
+    )
     .slice(0, cap);
 }
 

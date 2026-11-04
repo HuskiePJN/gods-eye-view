@@ -3047,5 +3047,8 @@
   "Saved {name}": "{name} salvo",
   "Could not save this view": "Não foi possível salvar esta vista",
   "Save this view as a place": "Salvar esta vista como lugar",
-  "+ SAVE": "+ SALVAR"
+  "+ SAVE": "+ SALVAR",
+  "Worldwide model estimate · Open-Meteo US AQI": "Estimativa de modelo mundial · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "Resposta de qualidade do ar do Open-Meteo malformada",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Canadá: estações AQHI da ECCC · demais: estimativas de modelo US AQI do Open-Meteo"
 }

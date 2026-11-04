@@ -1,5 +1,11 @@
 import { readResponseJsonCapped } from '../../sources/httpBody.js';
-import { normalizeAqhiStations, normalizeAqhiObservations } from './model.js';
+import {
+  airQualitySeverity,
+  normalizeAqhiStations,
+  normalizeAqhiObservations,
+  normalizeOpenMeteoAirQuality,
+} from './model.js';
+import { AIR_QUALITY_WORLD_POINTS } from './worldPoints.js';
 
 // A portable export (package.json): no i18n here. Failures stay English data;
 // the Layers panel and the Weather card show them translated.
@@ -105,6 +111,86 @@ export function createEcccAirQualitySource({
       if (!readings)
         throw new Error(msg('Malformed AQHI observation response'));
       return readings;
+    },
+  };
+}
+
+const OPEN_METEO_URL = 'https://air-quality-api.open-meteo.com/v1/air-quality';
+/** The model updates hourly; asking more often only spends the free quota. */
+const OPEN_METEO_TTL_MS = 60 * 60 * 1000;
+const OPEN_METEO_BATCH = 100;
+
+/**
+ * Open-Meteo's modelled US AQI at the bundled sample cities, keyless and free
+ * for non-commercial use (CC BY 4.0, "Weather data by Open-Meteo.com"). One
+ * multi-location request per hundred points, kept for an hour.
+ */
+export function createOpenMeteoAirQualitySource({
+  fetchImpl = (...args) => globalThis.fetch(...args),
+  now = () => Date.now(),
+  points = AIR_QUALITY_WORLD_POINTS,
+  timeoutMs = 20_000,
+} = {}) {
+  let cached = null;
+  let fetchedAt = 0;
+  return {
+    async getSnapshot({ signal } = {}) {
+      const clock = now();
+      if (cached && clock - fetchedAt < OPEN_METEO_TTL_MS) return cached;
+      const readings = [];
+      for (let start = 0; start < points.length; start += OPEN_METEO_BATCH) {
+        const batch = points.slice(start, start + OPEN_METEO_BATCH);
+        const params = new URLSearchParams({
+          latitude: batch.map(([, lat]) => lat).join(','),
+          longitude: batch.map(([, , lon]) => lon).join(','),
+          current: 'us_aqi,pm2_5',
+          timezone: 'GMT',
+        });
+        const timeout = AbortSignal.timeout(timeoutMs);
+        const response = await fetchImpl(`${OPEN_METEO_URL}?${params}`, {
+          headers: { Accept: 'application/json' },
+          signal: signal ? AbortSignal.any([signal, timeout]) : timeout,
+        });
+        if (!response.ok) throw new Error(`Open-Meteo HTTP ${response.status}`);
+        const payload = await readResponseJsonCapped(
+          response,
+          MAX_RESPONSE_BYTES,
+          signal,
+        );
+        const rows = normalizeOpenMeteoAirQuality(payload, batch, clock, start);
+        if (!rows)
+          throw new Error(msg('Malformed Open-Meteo air-quality response'));
+        readings.push(...rows);
+      }
+      cached = readings;
+      fetchedAt = clock;
+      return readings;
+    },
+  };
+}
+
+/**
+ * Every registered provider's readings in one snapshot, worst first. A
+ * provider that fails is left out; only when all fail does the snapshot fail.
+ */
+export function createAirQualitySource({
+  sources = [createEcccAirQualitySource(), createOpenMeteoAirQualitySource()],
+} = {}) {
+  return {
+    async getSnapshot(options = {}) {
+      const results = await Promise.allSettled(
+        sources.map((source) => source.getSnapshot(options)),
+      );
+      options.signal?.throwIfAborted();
+      const ok = results.filter((result) => result.status === 'fulfilled');
+      if (!ok.length) throw results[0].reason;
+      return ok
+        .flatMap((result) => result.value)
+        .sort(
+          (a, b) =>
+            airQualitySeverity(b) - airQualitySeverity(a) ||
+            a.id.localeCompare(b.id),
+        );
     },
   };
 }

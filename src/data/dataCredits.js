@@ -190,6 +190,14 @@ export const DATA_CREDITS = [
   OSM_CREDIT,
   OPENMAPTILES_CREDIT,
   {
+    key: 'open-meteo-aq',
+    html:
+      'Air quality (US AQI, model estimate): ' +
+      '<a href="https://open-meteo.com/" target="_blank" rel="noopener">Weather data by Open-Meteo.com</a> ' +
+      '(<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>), ' +
+      'from Copernicus Atmosphere Monitoring Service forecasts',
+  },
+  {
     key: 'eccc-aqhi',
     html:
       'Air quality (AQHI): Environment and Climate Change Canada — MSC GeoMet ' +

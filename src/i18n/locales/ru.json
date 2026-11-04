@@ -3117,5 +3117,8 @@
   "Saved {name}": "{name} сохранено",
   "Could not save this view": "Не удалось сохранить вид",
   "Save this view as a place": "Сохранить этот вид как место",
-  "+ SAVE": "+ СОХРАНИТЬ"
+  "+ SAVE": "+ СОХРАНИТЬ",
+  "Worldwide model estimate · Open-Meteo US AQI": "Модельная оценка по всему миру · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "Некорректный ответ Open-Meteo о качестве воздуха",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Канада: станции AQHI ECCC · остальной мир: модельные оценки US AQI от Open-Meteo"
 }

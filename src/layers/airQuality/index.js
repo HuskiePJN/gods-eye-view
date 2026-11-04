@@ -7,6 +7,7 @@ import {
   AIR_QUALITY_OVERLAY_COHORT_LIMIT,
   AIR_QUALITY_OVERLAY_COLLISION_CAPACITY,
   AIR_QUALITY_PROVIDERS,
+  airQualitySeverity,
   createAirQualityOverlayEntry,
   mapAnalystRecord,
   newestObservation,
@@ -15,7 +16,11 @@ import {
   selectAirQualityOverlayCohort,
 } from './model.js';
 export * from './model.js';
-export { createEcccAirQualitySource } from './source.js';
+export {
+  createAirQualitySource,
+  createEcccAirQualitySource,
+  createOpenMeteoAirQualitySource,
+} from './source.js';
 
 /** Station markers are a point reading, not an extent. */
 const STATION_MARKER_RADIUS_M = 6_000;
@@ -38,6 +43,8 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
   let rowControlsListener = null;
 
   const notify = () => rowControlsListener?.();
+  // The readout lists the worst readings in view, so it follows the camera.
+  let removeMoveEnd = null;
 
   /** The camera's lon/lat rectangle in degrees, or null when unresolvable. */
   const viewRectangle = () => {
@@ -77,6 +84,9 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
       _enabled = true;
       if (_dataSource) _dataSource.show = true;
       overlayHost.setVisible(AIR_QUALITY_OVERLAY_SOURCE_ID, true);
+      removeMoveEnd?.();
+      removeMoveEnd =
+        _viewer?.camera?.moveEnd?.addEventListener?.(notify) ?? null;
       notify();
     },
 
@@ -88,6 +98,8 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
       if (_dataSource) _dataSource.show = false;
       overlayHost.clearSource(AIR_QUALITY_OVERLAY_SOURCE_ID);
       overlayHost.setVisible(AIR_QUALITY_OVERLAY_SOURCE_ID, false);
+      removeMoveEnd?.();
+      removeMoveEnd = null;
       notify();
     },
 
@@ -167,7 +179,7 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
             position,
             title: `${reading.name} ${reading.label}`,
             accent: reading.color,
-            value: reading.value,
+            value: airQualitySeverity(reading),
           }),
         );
       }
@@ -200,6 +212,8 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
       _lastUpdate = null;
       _lastError = null;
       rowControlsListener = null;
+      removeMoveEnd?.();
+      removeMoveEnd = null;
     },
 
     /**
@@ -210,7 +224,13 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
      * the rest. Coverage is stated plainly because this layer is not global.
      */
     getRowControls() {
-      const provider = AIR_QUALITY_PROVIDERS.eccc;
+      // The providers with readings now, ECCC first; ECCC alone before any.
+      const providers = Object.values(AIR_QUALITY_PROVIDERS).filter(
+        (provider) =>
+          _readings.some((reading) => reading.provider === provider.id),
+      );
+      if (!providers.length) providers.push(AIR_QUALITY_PROVIDERS.eccc);
+      const provider = providers[0];
       const inView = readingsInView(_readings, viewRectangle(), READOUT_LIMIT);
       const newest = _readings.reduce(
         (max, reading) => Math.max(max, reading.observedMs || 0),
@@ -223,9 +243,16 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
         readout: true,
         summary: {
           label: t(provider.label),
-          coverage: t(provider.coverage),
+          coverage:
+            providers.length > 1
+              ? t(
+                  'Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates',
+                )
+              : t(provider.coverage),
           validTime: newest ? new Date(newest).toISOString() : undefined,
-          detail: `${provider.network} · ${provider.scale}`,
+          detail: providers
+            .map((entry) => `${entry.network} · ${entry.scale}`)
+            .join(' · '),
           status: _lastError
             ? translateFeedError(_lastError)
             : _count === 0
@@ -237,7 +264,7 @@ export function createAirQualityLayer({ source, overlayHost } = {}) {
                   '{count} station reporting',
                   '{count} stations reporting',
                 ),
-          units: provider.scale,
+          units: providers.map((entry) => entry.scale).join(' / '),
         },
         legend: AIR_QUALITY_BANDS.map((band) => ({
           color: band.color,

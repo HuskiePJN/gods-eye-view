@@ -2977,5 +2977,8 @@
   "Saved {name}": "{name} gespeichert",
   "Could not save this view": "Ansicht konnte nicht gespeichert werden",
   "Save this view as a place": "Diese Ansicht als Ort speichern",
-  "+ SAVE": "+ SPEICHERN"
+  "+ SAVE": "+ SPEICHERN",
+  "Worldwide model estimate · Open-Meteo US AQI": "Weltweite Modellschätzung · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "Fehlerhafte Open-Meteo-Luftqualitätsantwort",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "Kanada: ECCC-AQHI-Stationen · anderswo: Open-Meteo-US-AQI-Modellschätzungen"
 }

@@ -3257,5 +3257,8 @@
   "Saved {name}": "تم حفظ {name}",
   "Could not save this view": "تعذّر حفظ هذا العرض",
   "Save this view as a place": "احفظ هذا العرض كمكان",
-  "+ SAVE": "+ حفظ"
+  "+ SAVE": "+ حفظ",
+  "Worldwide model estimate · Open-Meteo US AQI": "تقدير نموذجي عالمي · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "استجابة جودة الهواء من Open-Meteo تالفة",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "كندا: محطات AQHI التابعة لـ ECCC · غيرها: تقديرات نموذج US AQI من Open-Meteo"
 }

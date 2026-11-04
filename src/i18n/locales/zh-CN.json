@@ -2907,5 +2907,8 @@
   "Saved {name}": "已保存 {name}",
   "Could not save this view": "无法保存此视图",
   "Save this view as a place": "将此视图保存为地点",
-  "+ SAVE": "+ 保存"
+  "+ SAVE": "+ 保存",
+  "Worldwide model estimate · Open-Meteo US AQI": "全球模型估算 · Open-Meteo US AQI",
+  "Malformed Open-Meteo air-quality response": "Open-Meteo 空气质量响应格式错误",
+  "Canada: ECCC AQHI stations · elsewhere: Open-Meteo US AQI model estimates": "加拿大：ECCC AQHI 站点 · 其他地区：Open-Meteo US AQI 模型估算"
 }
