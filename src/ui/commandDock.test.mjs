@@ -226,7 +226,9 @@ test('the location tray renders what LocationControls publishes', async (t) => {
   store.connect(controls);
   await nextTick();
   const pills = [
-    ...document.querySelectorAll('#location-pills .location-pill'),
+    ...document.querySelectorAll(
+      '#location-pills .location-pill[data-location-id]',
+    ),
   ];
   assert.deepEqual(
     pills.map((pill) => `${pill.dataset.locationId}:${pill.textContent}`),

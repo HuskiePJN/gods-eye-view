@@ -3112,5 +3112,10 @@
   "Weather alert source unavailable": "Джерело погодних попереджень недоступне",
   "Active US National Weather Service alerts. Click an area for details.": "Чинні попередження Національної метеослужби США. Натисніть на область, щоб побачити подробиці.",
   "Malformed weather alert snapshot": "Некоректні дані погодних попереджень",
-  "Weather Alerts": "Погодні попередження"
+  "Weather Alerts": "Погодні попередження",
+  "Name this place": "Назвіть це місце",
+  "Saved {name}": "{name} збережено",
+  "Could not save this view": "Не вдалося зберегти вигляд",
+  "Save this view as a place": "Зберегти цей вигляд як місце",
+  "+ SAVE": "+ ЗБЕРЕГТИ"
 }

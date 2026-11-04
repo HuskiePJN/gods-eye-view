@@ -2,6 +2,7 @@ import * as Cesium from 'cesium';
 import { t } from '../i18n/index.js';
 import { createStateChannel } from '../app/stateChannel.js';
 import { LocationControls } from './location.js';
+import { savedPlaces } from '../search/savedPlaces.js';
 
 /** Own destination selection, lookup, orbit and world-jump lifetime. */
 export class LocationNavigation {
@@ -150,6 +151,9 @@ export class LocationNavigation {
       onSearch: (query) => this._locationLookup.run(query),
       onSearchEdit: () => this._setLocationSearchError(null),
       onReset: () => this.resetToGlobeView(),
+      savedPlaces,
+      onSaveView: () => this._saveCurrentView(),
+      onSavedPlace: (id) => this._flyToSavedPlace(id),
       searchExpanded,
     });
     // The new lookup's reset settles a replaced lookup's search through the
@@ -161,6 +165,51 @@ export class LocationNavigation {
     );
     this._connectLocation?.(this._locationControls);
     this._connectGlobeReset?.(this._locationControls);
+  }
+
+  /** Name the camera's current view and keep it as a saved place. */
+  _saveCurrentView() {
+    const camera = this.viewer?.camera;
+    const position = camera?.positionCartographic;
+    if (!position) return;
+    const suggested =
+      this._searchedLocationLabel ||
+      this.services.CITY_POIS?.[this._activeLocationId]?.name ||
+      '';
+    const name = globalThis.prompt?.(t('Name this place'), suggested);
+    if (!name?.trim()) return;
+    const saved = savedPlaces.save({
+      name,
+      lat: Cesium.Math.toDegrees(position.latitude),
+      lon: Cesium.Math.toDegrees(position.longitude),
+      height: position.height,
+      heading: camera.heading,
+      pitch: camera.pitch,
+    });
+    this._showToast(
+      saved
+        ? t('Saved {name}', { name: saved.name })
+        : t('Could not save this view'),
+    );
+  }
+
+  /** Fly to a saved place's exact view. */
+  _flyToSavedPlace(id) {
+    const place = savedPlaces.list().find((entry) => entry.id === id);
+    if (!place) return;
+    this._runExplicitNavigation('location', () => {
+      this.viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(
+          place.lon,
+          place.lat,
+          place.height,
+        ),
+        orientation: { heading: place.heading, pitch: place.pitch, roll: 0 },
+        duration: 2.5,
+      });
+      return true;
+    });
+    this._searchedLocationLabel = place.name;
   }
 
   _beginWorldJumpTransition() {

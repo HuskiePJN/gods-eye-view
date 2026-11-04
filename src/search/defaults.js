@@ -7,6 +7,7 @@ import { createGoogleGeocoder } from './google.js';
 import { createPhotonGeocoder } from '../keylessGeocoder.js';
 import { createCoordinateGeocoder } from './coordinateGeocoder.js';
 import { createPresetGeocoder } from './presetGeocoder.js';
+import { createSavedPlaceGeocoder } from './savedPlaces.js';
 import { createAlpsGeocoder } from './alpsGeocoder.js';
 
 /**
@@ -41,6 +42,7 @@ export function createDefaultPlaceSearch({
     signal,
     providers: providers.geocode || [
       createCoordinateGeocoder(),
+      createSavedPlaceGeocoder(),
       ...(presets ? [createPresetGeocoder({ presets })] : []),
       createAlpsGeocoder(),
       ...(selected

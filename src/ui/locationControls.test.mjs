@@ -101,6 +101,7 @@ test('the tray presents its cities, empty status and no landmarks at first', () 
       { id: 'a', label: 'City A', active: false },
       { id: 'b', label: 'City B', active: false },
     ],
+    saved: [],
     poiCity: null,
     pois: [],
     poisExpanded: false,

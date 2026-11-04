@@ -3042,5 +3042,10 @@
   "Weather alert source unavailable": "Source des alertes météo indisponible",
   "Active US National Weather Service alerts. Click an area for details.": "Alertes en cours du National Weather Service américain. Cliquez sur une zone pour les détails.",
   "Malformed weather alert snapshot": "Données d’alertes météo mal formées",
-  "Weather Alerts": "Alertes météo"
+  "Weather Alerts": "Alertes météo",
+  "Name this place": "Nommer ce lieu",
+  "Saved {name}": "{name} enregistré",
+  "Could not save this view": "Impossible d’enregistrer cette vue",
+  "Save this view as a place": "Enregistrer cette vue comme lieu",
+  "+ SAVE": "+ ENREGISTRER"
 }

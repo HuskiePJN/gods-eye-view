@@ -537,3 +537,19 @@ body:not(.ui-clean-view):not(.recording-mode):has(
     bottom: calc(50vh + 8px);
   }
 }
+
+/* Saved places sit after the preset cities; the × removes one. */
+#command-dock .saved-place-pill {
+  color: var(--accent, #00d4ff);
+}
+#command-dock .saved-place-remove {
+  margin-left: 0.35em;
+  opacity: 0.55;
+  cursor: pointer;
+}
+#command-dock .saved-place-remove:is(:hover, :focus-visible) {
+  opacity: 1;
+}
+#command-dock .saved-place-add {
+  opacity: 0.75;
+}

@@ -33,6 +33,9 @@ export class LocationControls {
     onSearch,
     onSearchEdit,
     onReset,
+    savedPlaces = null,
+    onSaveView = () => {},
+    onSavedPlace = () => {},
     searchExpanded = false,
     publish = () => {},
     doc = document,
@@ -47,6 +50,9 @@ export class LocationControls {
       onPoi,
       onSearch,
       onReset,
+      savedPlaces,
+      onSaveView,
+      onSavedPlace,
       publish,
       doc,
       requestFrame,
@@ -100,6 +106,9 @@ export class LocationControls {
     this.bind(elements.search, 'blur', () => {
       if (!elements.search.value) onSearchEdit?.();
     });
+    // Saved places render beside the city pills and follow every change.
+    if (savedPlaces?.subscribe)
+      this.removers.push(savedPlaces.subscribe(() => this.present()));
     this.present();
   }
   bind(element, event, handler, removers = this.removers) {
@@ -123,6 +132,10 @@ export class LocationControls {
         label: localizePlaceName(city.name),
         active: id === this.activeCity,
       })),
+      saved: (this.savedPlaces?.list() ?? []).map(({ id, name }) => ({
+        id,
+        name,
+      })),
       poiCity: this.poiCity,
       pois: pois.map((poi, index) => ({
         index,
@@ -141,6 +154,18 @@ export class LocationControls {
   /** A city pill was clicked. */
   chooseCity(id) {
     if (!this.destroyed) this.onCity(id);
+  }
+  /** Save the current view as a named place. */
+  saveView() {
+    if (!this.destroyed) this.onSaveView();
+  }
+  /** A saved-place pill was clicked. */
+  chooseSaved(id) {
+    if (!this.destroyed) this.onSavedPlace(id);
+  }
+  /** A saved place's remove mark was clicked. */
+  removeSaved(id) {
+    if (!this.destroyed) this.savedPlaces?.remove(id);
   }
   /** A reset to the full globe view was asked for. */
   reset() {

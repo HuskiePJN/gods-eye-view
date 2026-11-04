@@ -2902,5 +2902,10 @@
   "Weather alert source unavailable": "気象警報の取得元を利用できません",
   "Active US National Weather Service alerts. Click an area for details.": "米国立気象局（NWS）の発表中の警報。エリアをクリックすると詳細を表示します。",
   "Malformed weather alert snapshot": "気象警報データの形式が不正です",
-  "Weather Alerts": "気象警報"
+  "Weather Alerts": "気象警報",
+  "Name this place": "この場所に名前を付ける",
+  "Saved {name}": "{name} を保存しました",
+  "Could not save this view": "このビューを保存できませんでした",
+  "Save this view as a place": "このビューを場所として保存",
+  "+ SAVE": "＋ 保存"
 }

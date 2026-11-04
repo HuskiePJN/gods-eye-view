@@ -2902,5 +2902,10 @@
   "Weather alert source unavailable": "天氣警報來源無法使用",
   "Active US National Weather Service alerts. Click an area for details.": "美國國家氣象局目前生效的警報。點擊區域查看詳情。",
   "Malformed weather alert snapshot": "天氣警報資料格式錯誤",
-  "Weather Alerts": "天氣警報"
+  "Weather Alerts": "天氣警報",
+  "Name this place": "為此地點命名",
+  "Saved {name}": "已儲存 {name}",
+  "Could not save this view": "無法儲存此檢視",
+  "Save this view as a place": "將此檢視儲存為地點",
+  "+ SAVE": "+ 儲存"
 }

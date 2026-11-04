@@ -2902,5 +2902,10 @@
   "Weather alert source unavailable": "天气预警来源不可用",
   "Active US National Weather Service alerts. Click an area for details.": "美国国家气象局当前生效的预警。点击区域查看详情。",
   "Malformed weather alert snapshot": "天气预警数据格式错误",
-  "Weather Alerts": "天气预警"
+  "Weather Alerts": "天气预警",
+  "Name this place": "为此地点命名",
+  "Saved {name}": "已保存 {name}",
+  "Could not save this view": "无法保存此视图",
+  "Save this view as a place": "将此视图保存为地点",
+  "+ SAVE": "+ 保存"
 }

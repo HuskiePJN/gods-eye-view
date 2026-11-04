@@ -3252,5 +3252,10 @@
   "Weather alert source unavailable": "مصدر تنبيهات الطقس غير متاح",
   "Active US National Weather Service alerts. Click an area for details.": "تنبيهات سارية من هيئة الأرصاد الجوية الوطنية الأمريكية. انقر على منطقة لعرض التفاصيل.",
   "Malformed weather alert snapshot": "بيانات تنبيهات الطقس تالفة",
-  "Weather Alerts": "تنبيهات الطقس"
+  "Weather Alerts": "تنبيهات الطقس",
+  "Name this place": "سمِّ هذا المكان",
+  "Saved {name}": "تم حفظ {name}",
+  "Could not save this view": "تعذّر حفظ هذا العرض",
+  "Save this view as a place": "احفظ هذا العرض كمكان",
+  "+ SAVE": "+ حفظ"
 }
