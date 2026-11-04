@@ -106,7 +106,10 @@ export function createLineNetworkLayer(
       new Cesium.GroundPolylinePrimitive({
         geometryInstances: instances,
         appearance: new Cesium.PolylineColorAppearance(),
-        asynchronous: true,
+        // Built on this thread: the app renders on demand, and a primitive
+        // built in the background would otherwise wait for the next camera
+        // move to appear. City-scale batches build in a few milliseconds.
+        asynchronous: false,
       }),
     );
     viewer.scene.requestRender?.();
@@ -147,6 +150,8 @@ export function createLineNetworkLayer(
       const next = await source.fetch(descriptor, box, {
         signal: controller.signal,
       });
+      // Synchronous ground polylines need the terrain height table first.
+      await Cesium.GroundPolylinePrimitive.initializeTerrainHeights();
       if (controller.signal.aborted || !enabled) return;
       lines = next;
       boxKey = key;
