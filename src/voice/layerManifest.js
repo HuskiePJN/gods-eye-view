@@ -239,6 +239,30 @@ const layers = [
     },
   },
   {
+    id: 'weather-alerts',
+    aliases: [
+      'weather alerts',
+      'weather warnings',
+      'severe weather',
+      'warnings',
+      'watches',
+      'nws alerts',
+    ],
+    context: false,
+    query: {
+      fields: {
+        event: ['t'],
+        significance: ['t'],
+        phenomenon: ['t'],
+        office: ['t'],
+        onsetMs: ['ms'],
+        endsMs: ['ms'],
+        issuedMs: ['ms'],
+      },
+      timeField: 'issuedMs',
+    },
+  },
+  {
     id: 'weather-cyclones',
     aliases: ['cyclones', 'hurricanes', 'typhoons', 'tropical storms'],
     context: false,

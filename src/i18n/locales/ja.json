@@ -2891,5 +2891,16 @@
   "Ringed dot: click for the alert": "輪付きの点：クリックすると情報を表示",
   "routes unavailable": "路線を取得できません",
   "Type a command": "コマンドを入力",
-  "Type a command, then press Enter": "コマンドを入力して Enter を押す"
+  "Type a command, then press Enter": "コマンドを入力して Enter を押す",
+  "weather alert|Warning": "警報",
+  "weather alert|Watch": "注意報（監視）",
+  "weather alert|Advisory": "注意報",
+  "weather alert|Statement": "情報",
+  "From {time}": "{time} から",
+  "Until {time}": "{time} まで",
+  "Issued by NWS {office}": "NWS {office} 発表",
+  "Weather alert source unavailable": "気象警報の取得元を利用できません",
+  "Active US National Weather Service alerts. Click an area for details.": "米国立気象局（NWS）の発表中の警報。エリアをクリックすると詳細を表示します。",
+  "Malformed weather alert snapshot": "気象警報データの形式が不正です",
+  "Weather Alerts": "気象警報"
 }

@@ -3101,5 +3101,16 @@
   "Ringed dot: click for the alert": "Точка в кольце: нажмите, чтобы открыть оповещение",
   "routes unavailable": "маршруты недоступны",
   "Type a command": "Ввести команду",
-  "Type a command, then press Enter": "Введите команду и нажмите Enter"
+  "Type a command, then press Enter": "Введите команду и нажмите Enter",
+  "weather alert|Warning": "Предупреждение",
+  "weather alert|Watch": "Штормовое оповещение",
+  "weather alert|Advisory": "Уведомление",
+  "weather alert|Statement": "Сообщение",
+  "From {time}": "С {time}",
+  "Until {time}": "До {time}",
+  "Issued by NWS {office}": "Выпущено NWS {office}",
+  "Weather alert source unavailable": "Источник погодных предупреждений недоступен",
+  "Active US National Weather Service alerts. Click an area for details.": "Действующие предупреждения Национальной метеослужбы США. Нажмите на область, чтобы узнать подробности.",
+  "Malformed weather alert snapshot": "Некорректные данные погодных предупреждений",
+  "Weather Alerts": "Погодные предупреждения"
 }

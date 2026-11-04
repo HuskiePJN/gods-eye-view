@@ -2882,6 +2882,11 @@
       "src/layers/gnss/index.js",
       "src/layers/gnss/source.js",
       "src/layers/gnss/records.js",
+      "src/app/layers/weatherAlerts.js",
+      "src/layers/weatherAlerts/index.js",
+      "src/layers/weatherAlerts/source.js",
+      "src/layers/weatherAlerts/records.js",
+      "src/layers/weatherAlerts/cards.js",
       "src/app/layers/ghostMaps.js",
       "src/layers/ghostMaps/index.js",
       "src/layers/ghostMaps/catalog.js",
@@ -3617,6 +3622,11 @@
       "src/layers/gnss/index.js",
       "src/layers/gnss/source.js",
       "src/layers/gnss/records.js",
+      "src/app/layers/weatherAlerts.js",
+      "src/layers/weatherAlerts/index.js",
+      "src/layers/weatherAlerts/source.js",
+      "src/layers/weatherAlerts/records.js",
+      "src/layers/weatherAlerts/cards.js",
       "src/app/layers/ghostMaps.js",
       "src/layers/ghostMaps/index.js",
       "src/layers/ghostMaps/catalog.js",
@@ -4326,6 +4336,7 @@
       "src/layers/perimeters/records.js",
       "src/layers/submarineCables/bundledSource.js",
       "src/layers/gnss/source.js",
+      "src/layers/weatherAlerts/source.js",
       "src/layers/airQuality/model.js",
       "src/layers/airQuality/source.js"
     ],
@@ -4711,6 +4722,40 @@
       "src/sources/httpBody.js",
       "src/i18n/marker.js",
       "src/layers/perimeters/source.js"
+    ],
+    "external": []
+  },
+  "weather-alerts": {
+    "exports": ["./layers/weatherAlerts"],
+    "modules": [
+      "src/layers/weatherAlerts/index.js",
+      "src/sources/httpBody.js",
+      "src/i18n/marker.js",
+      "src/layers/weatherAlerts/source.js",
+      "src/layers/weatherAlerts/records.js",
+      "src/layers/weatherAlerts/cards.js",
+      "src/i18n/index.js",
+      "src/i18n/locale.js",
+      "src/i18n/locales/ar.json",
+      "src/i18n/locales/de.json",
+      "src/i18n/locales/es.json",
+      "src/i18n/locales/fr.json",
+      "src/i18n/locales/it.json",
+      "src/i18n/locales/ja.json",
+      "src/i18n/locales/pt.json",
+      "src/i18n/locales/ru.json",
+      "src/i18n/locales/uk.json",
+      "src/i18n/locales/zh-CN.json",
+      "src/i18n/locales/zh-Hant.json"
+    ],
+    "external": ["cesium"]
+  },
+  "weather-alerts-source": {
+    "exports": ["./layers/weatherAlerts/source"],
+    "modules": [
+      "src/sources/httpBody.js",
+      "src/i18n/marker.js",
+      "src/layers/weatherAlerts/source.js"
     ],
     "external": []
   },

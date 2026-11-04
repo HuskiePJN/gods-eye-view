@@ -2891,5 +2891,16 @@
   "Ringed dot: click for the alert": "帶圈圓點：點擊查看提醒",
   "routes unavailable": "路線無法使用",
   "Type a command": "輸入指令",
-  "Type a command, then press Enter": "輸入指令，然後按 Enter"
+  "Type a command, then press Enter": "輸入指令，然後按 Enter",
+  "weather alert|Warning": "警告",
+  "weather alert|Watch": "監視",
+  "weather alert|Advisory": "特報",
+  "weather alert|Statement": "聲明",
+  "From {time}": "自 {time}",
+  "Until {time}": "至 {time}",
+  "Issued by NWS {office}": "由 NWS {office} 發布",
+  "Weather alert source unavailable": "天氣警報來源無法使用",
+  "Active US National Weather Service alerts. Click an area for details.": "美國國家氣象局目前生效的警報。點擊區域查看詳情。",
+  "Malformed weather alert snapshot": "天氣警報資料格式錯誤",
+  "Weather Alerts": "天氣警報"
 }

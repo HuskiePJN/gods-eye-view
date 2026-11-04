@@ -3031,5 +3031,16 @@
   "Ringed dot: click for the alert": "Punto con anillo: haz clic para ver el aviso",
   "routes unavailable": "líneas no disponibles",
   "Type a command": "Escribir un comando",
-  "Type a command, then press Enter": "Escribe un comando y pulsa Intro"
+  "Type a command, then press Enter": "Escribe un comando y pulsa Intro",
+  "weather alert|Warning": "Aviso",
+  "weather alert|Watch": "Vigilancia",
+  "weather alert|Advisory": "Advertencia",
+  "weather alert|Statement": "Comunicado",
+  "From {time}": "Desde {time}",
+  "Until {time}": "Hasta {time}",
+  "Issued by NWS {office}": "Emitido por NWS {office}",
+  "Weather alert source unavailable": "Fuente de alertas meteorológicas no disponible",
+  "Active US National Weather Service alerts. Click an area for details.": "Alertas vigentes del Servicio Meteorológico Nacional de EE. UU. Haz clic en una zona para ver detalles.",
+  "Malformed weather alert snapshot": "Datos de alertas meteorológicas mal formados",
+  "Weather Alerts": "Alertas meteorológicas"
 }

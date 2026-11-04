@@ -1032,10 +1032,11 @@ test('the voice TOOL SCHEMA matches the pinned contract — the mission mapping 
   // The layer alias hint leaves out aliases the layer id already spells.
   // The Utilities panel adds one set_panel_open target; Sea Marks and Ski
   // Pistes extend the generated layer enums and alias hint.
-  assert.equal(block.length, 31026, 'serialized tool schema length drifted');
+  // Weather Alerts (NWS) extends the generated layer enums and alias hint.
+  assert.equal(block.length, 31187, 'serialized tool schema length drifted');
   assert.equal(
     crypto.createHash('sha256').update(block).digest('hex'),
-    '5f5275cd6e320afef4fd224b235f3e0f191ec06599b257ffe1f60b703a255199',
+    'c4d6f794dd981beb79e98cefcc134dde2a2953ea6dc95b98014315fc573ed759',
     'the first-run missions must ride EXISTING tools: no schema edit, no cache bust',
   );
   const instructions = fs.readFileSync(

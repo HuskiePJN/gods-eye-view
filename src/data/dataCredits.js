@@ -174,6 +174,12 @@ export const DATA_CREDITS = [
       '<a href="https://lpdaac.usgs.gov/products/hlss30v002/" target="_blank" rel="noopener">HLS product page</a>',
   },
   {
+    key: 'nws-alerts',
+    html:
+      'Weather alerts: ' +
+      '<a href="https://www.weather.gov/" target="_blank" rel="noopener">NOAA National Weather Service</a> watches, warnings and advisories',
+  },
+  {
     key: 'wfigs',
     html:
       'Wildfire perimeters: ' +

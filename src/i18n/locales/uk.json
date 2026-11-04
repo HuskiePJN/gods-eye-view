@@ -3101,5 +3101,16 @@
   "Ringed dot: click for the alert": "Крапка в кільці: натисніть, щоб відкрити сповіщення",
   "routes unavailable": "маршрути недоступні",
   "Type a command": "Ввести команду",
-  "Type a command, then press Enter": "Введіть команду й натисніть Enter"
+  "Type a command, then press Enter": "Введіть команду й натисніть Enter",
+  "weather alert|Warning": "Попередження",
+  "weather alert|Watch": "Штормове оповіщення",
+  "weather alert|Advisory": "Повідомлення",
+  "weather alert|Statement": "Заява",
+  "From {time}": "З {time}",
+  "Until {time}": "До {time}",
+  "Issued by NWS {office}": "Видано NWS {office}",
+  "Weather alert source unavailable": "Джерело погодних попереджень недоступне",
+  "Active US National Weather Service alerts. Click an area for details.": "Чинні попередження Національної метеослужби США. Натисніть на область, щоб побачити подробиці.",
+  "Malformed weather alert snapshot": "Некоректні дані погодних попереджень",
+  "Weather Alerts": "Погодні попередження"
 }

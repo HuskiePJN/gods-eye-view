@@ -2961,5 +2961,16 @@
   "Ringed dot: click for the alert": "Punkt mit Ring: für den Hinweis anklicken",
   "routes unavailable": "Linien nicht verfügbar",
   "Type a command": "Befehl eintippen",
-  "Type a command, then press Enter": "Befehl eintippen, dann Enter drücken"
+  "Type a command, then press Enter": "Befehl eintippen, dann Enter drücken",
+  "weather alert|Warning": "Warnung",
+  "weather alert|Watch": "Vorwarnung",
+  "weather alert|Advisory": "Hinweis",
+  "weather alert|Statement": "Mitteilung",
+  "From {time}": "Ab {time}",
+  "Until {time}": "Bis {time}",
+  "Issued by NWS {office}": "Herausgegeben von NWS {office}",
+  "Weather alert source unavailable": "Wetterwarnungen nicht verfügbar",
+  "Active US National Weather Service alerts. Click an area for details.": "Aktuelle Warnungen des US National Weather Service. Für Details auf ein Gebiet klicken.",
+  "Malformed weather alert snapshot": "Fehlerhafte Wetterwarnungsdaten",
+  "Weather Alerts": "Wetterwarnungen"
 }

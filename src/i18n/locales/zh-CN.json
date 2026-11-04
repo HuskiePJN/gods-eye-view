@@ -2891,5 +2891,16 @@
   "Ringed dot: click for the alert": "带圈圆点：点击查看提醒",
   "routes unavailable": "线路不可用",
   "Type a command": "输入指令",
-  "Type a command, then press Enter": "输入指令，然后按回车"
+  "Type a command, then press Enter": "输入指令，然后按回车",
+  "weather alert|Warning": "警告",
+  "weather alert|Watch": "监视",
+  "weather alert|Advisory": "通告",
+  "weather alert|Statement": "声明",
+  "From {time}": "自 {time}",
+  "Until {time}": "至 {time}",
+  "Issued by NWS {office}": "由 NWS {office} 发布",
+  "Weather alert source unavailable": "天气预警来源不可用",
+  "Active US National Weather Service alerts. Click an area for details.": "美国国家气象局当前生效的预警。点击区域查看详情。",
+  "Malformed weather alert snapshot": "天气预警数据格式错误",
+  "Weather Alerts": "天气预警"
 }
