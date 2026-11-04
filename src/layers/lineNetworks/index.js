@@ -167,7 +167,7 @@ export function createLineNetworkLayer(
     timer = setTimeout(refresh, DEBOUNCE_MS);
   };
 
-  return {
+  const layer = {
     id: descriptor.id,
     name: descriptor.name,
     icon: descriptor.icon,
@@ -223,11 +223,12 @@ export function createLineNetworkLayer(
       return { count: lines.length, lastUpdate, error: lastError };
     },
     destroy() {
-      this.disable();
+      layer.disable();
       listener = null;
       viewer = null;
     },
   };
+  return layer;
 }
 
 /** One layer per descriptor, in panel order. */

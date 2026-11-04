@@ -15,6 +15,9 @@ import {
 } from './records.js';
 export * from './records.js';
 
+/** The drape is painted at four pixels per degree. */
+const SCALE = 4;
+
 /** The OVATION grid and the latest Kp, straight from SWPC (CORS-open). */
 export function createSwpcSpaceWeatherSource({
   fetchImpl = (...args) => globalThis.fetch(...args),
@@ -82,10 +85,12 @@ export function createAuroraLayer({
     }) || { collection: null, kind: 'none' };
     hostKind = target.kind;
     if (!target.collection) return;
-    const canvas = doc.createElement('canvas');
-    canvas.width = GRID_WIDTH;
-    canvas.height = GRID_HEIGHT;
-    canvas
+    // Paint the 1° grid, then scale it up with smoothing so the oval's edge
+    // is a gradient rather than one-degree steps.
+    const grid = doc.createElement('canvas');
+    grid.width = GRID_WIDTH;
+    grid.height = GRID_HEIGHT;
+    grid
       .getContext('2d')
       .putImageData(
         new ImageData(
@@ -96,21 +101,28 @@ export function createAuroraLayer({
         0,
         0,
       );
-    const layer = new Cesium.ImageryLayer(
+    const canvas = doc.createElement('canvas');
+    canvas.width = GRID_WIDTH * SCALE;
+    canvas.height = GRID_HEIGHT * SCALE;
+    const context = canvas.getContext('2d');
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = 'high';
+    context.drawImage(grid, 0, 0, canvas.width, canvas.height);
+    const drape = new Cesium.ImageryLayer(
       new Cesium.SingleTileImageryProvider({
         url: canvas.toDataURL('image/png'),
-        tileWidth: GRID_WIDTH,
-        tileHeight: GRID_HEIGHT,
+        tileWidth: canvas.width,
+        tileHeight: canvas.height,
         rectangle: Cesium.Rectangle.fromDegrees(-180, -90, 180, 90),
         credit: 'Aurora forecast: NOAA SWPC OVATION',
       }),
     );
-    target.collection.add(layer);
-    imagery = { layer, collection: target.collection };
+    target.collection.add(drape);
+    imagery = { layer: drape, collection: target.collection };
     viewer.scene?.requestRender?.();
   }
 
-  return {
+  const layer = {
     id: 'aurora',
     name: 'Aurora',
     icon: '🌌',
@@ -176,6 +188,8 @@ export function createAuroraLayer({
                 kp: formatNumber(kp, { maximumFractionDigits: 1 }),
               }),
         );
+      if (snapshot)
+        lines.push(t('Peak chance {percent}%', { percent: snapshot.max }));
       if (Number.isFinite(snapshot?.forecastMs))
         lines.push(
           t('Forecast for {time}', {
@@ -200,7 +214,7 @@ export function createAuroraLayer({
     },
     getStats() {
       return {
-        count: snapshot ? snapshot.max : 0,
+        count: enabled && snapshot ? 1 : 0,
         lastUpdate,
         error:
           lastError ??
@@ -208,7 +222,7 @@ export function createAuroraLayer({
       };
     },
     destroy() {
-      this.disable();
+      layer.disable();
       unsubscribeMap?.();
       unsubscribeMap = null;
       mapStack = null;
@@ -217,4 +231,5 @@ export function createAuroraLayer({
       snapshot = null;
     },
   };
+  return layer;
 }

@@ -2932,5 +2932,6 @@
   "10–30% chance": "確率 10–30%",
   "30–50% chance": "確率 30–50%",
   "50% or more": "50% 以上",
-  "Aurora": "オーロラ"
+  "Aurora": "オーロラ",
+  "Peak chance {percent}%": "最大確率 {percent}%"
 }

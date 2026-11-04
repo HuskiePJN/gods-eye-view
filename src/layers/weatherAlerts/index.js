@@ -169,7 +169,10 @@ export function createWeatherAlertsLayer({
             ? snapshot.fetchedAt
             : Date.now();
         const signature = rows
-          .map((row) => `${row.stableId}:${row.polygons.length}`)
+          .map(
+            (row) =>
+              `${row.stableId}:${row.polygons.length}:${row.endsMs}:${row.onsetMs}`,
+          )
           .sort()
           .join('|');
         if (signature === _snapshotSignature) {

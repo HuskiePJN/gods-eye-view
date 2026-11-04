@@ -12,7 +12,8 @@
 # the first time voice uses it.
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+SELF="$(readlink -f "${BASH_SOURCE[0]}" 2>/dev/null || echo "${BASH_SOURCE[0]}")"
+ROOT_DIR="$(cd "$(dirname "$SELF")/.." && pwd)"
 cd "$ROOT_DIR"
 PORT="${PORT:-4173}"
 URL="http://localhost:${PORT}/"
@@ -105,7 +106,7 @@ trap shutdown EXIT HUP INT TERM
 say "Starting God's Eye View at $URL"
 echo "Close the God's Eye View window to stop everything."
 set -m # the server gets its own process group, so shutdown can stop all of it
-npm run dev -- --port "$PORT" --strictPort &
+npm run dev -- --port "$PORT" --strictPort </dev/null &
 SERVER_PID=$!
 set +m
 

@@ -319,7 +319,7 @@ const layers = [
     context: false,
     query: {
       fields: {
-        value: ['n', 'AQHI'],
+        value: ['n', 'AQHI or US AQI, see scale'],
         band: ['t'],
         scale: ['t'],
         provider: ['t'],

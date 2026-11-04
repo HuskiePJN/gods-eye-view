@@ -184,8 +184,30 @@ export function createVoiceCommands({
   const typeHandler = async (text) => {
     const command = String(text ?? '').trim();
     if (!command) return;
-    if (!session.isActive()) await session.start({ pushToTalk: true });
-    if (session.isActive()) session.sendText(command);
+    if (!session.isActive()) {
+      // start() resolves before a cloud channel is open; wait for the
+      // session to be listening (or give up after 30 s or on failure).
+      const listening = new Promise((resolve) => {
+        const timer = setTimeout(() => done(false), 30_000);
+        const off = session.subscribe((event) => {
+          if (event?.type !== 'state') return;
+          if (event.state === 'listening') done(true);
+          else if (['idle', 'error'].includes(event.state)) done(false);
+        });
+        function done(ok) {
+          clearTimeout(timer);
+          off();
+          resolve(ok);
+        }
+      });
+      await session.start({ pushToTalk: true });
+      if (!(await listening)) return;
+    }
+    try {
+      session.sendText(command);
+    } catch (error) {
+      console.warn('[GEV voice] typed command not sent:', error?.message);
+    }
   };
   const offType = ui.on('type-command', typeHandler);
   let cleaned = false;

@@ -542,8 +542,17 @@ body:not(.ui-clean-view):not(.recording-mode):has(
 #command-dock .saved-place-pill {
   color: var(--accent, #00d4ff);
 }
+#command-dock .saved-place {
+  display: inline-flex;
+  align-items: center;
+}
 #command-dock .saved-place-remove {
-  margin-left: 0.35em;
+  margin-left: -0.2em;
+  padding: 0 0.35em;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
   opacity: 0.55;
   cursor: pointer;
 }

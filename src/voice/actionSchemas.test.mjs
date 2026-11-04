@@ -43,14 +43,15 @@ test('the complete Realtime tool payload pins the manifest-generated layer relea
     // Globe rotation adds one motion; visual keyhole fit and explicit
     // reset guidance/defaults update only move_camera and mode descriptions.
     // S2 GhostMaps extends the generated layer enums.
-    // Weather Alerts (NWS), Railways, Power Grid and Aurora extend the generated layer enums.
+    // Weather Alerts (NWS), Railways, Power Grid and Aurora extend the generated
+    // layer enums; the air-quality value field names both of its scales.
     // The Utilities panel (Directions, Draw, Import) adds one panel target.
     // Panel adds named voice targets and timeout; shared Panel/Cockpit guidance
     // is consolidated without changing either feature's arguments.
     // Snow leaves the set_visual_style enum.
     // The Operator HUD layout leaves set_hud's layout enum.
     // The layer alias hint leaves out aliases the layer id already spells.
-    'f9f8940c1ea2792e59ecf86b8fcc6448b99c07a2c28a27f281e26ab6744ddf22',
+    '098208c257a258355917c0fb1eeeccc47fba09966508cf850f2693cca3784810',
   );
 });
 

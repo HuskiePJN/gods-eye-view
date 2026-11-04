@@ -26,8 +26,8 @@ export const LINE_NETWORK_LAYERS = Object.freeze([
     icon: '🚆',
     source: 'BTS NTAD',
     url: 'https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_North_American_Rail_Network_Lines/FeatureServer/0/query',
-    // Abandoned (A) and out-of-service (X) track is left out.
-    where: "NET NOT IN ('A','X')",
+    // Abandoned (A), out-of-service (X) and rail-trail (T) track is left out.
+    where: "NET NOT IN ('A','X','T')",
     outFields: 'FRAARCID,NET,PASSNGR,RROWNER1,SUBDIV,TRACKS',
     classes: Object.freeze([
       {
@@ -68,7 +68,9 @@ export const LINE_NETWORK_LAYERS = Object.freeze([
     name: 'Power Grid',
     icon: '⚡',
     source: 'HIFLD',
-    url: 'https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Power_Transmission_Lines/FeatureServer/0/query',
+    // HIFLD/EIA data as republished by Esri's U.S. Federal Datasets (fedmaps),
+    // last data update September 2024; the only complete public copy left.
+    url: 'https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/US_Electric_Power_Transmission_Lines/FeatureServer/0/query',
     where: '1=1',
     outFields: 'ID,VOLTAGE,OWNER,STATUS,TYPE',
     classes: Object.freeze([

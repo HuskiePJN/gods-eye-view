@@ -3072,5 +3072,6 @@
   "10–30% chance": "10–30 % de probabilité",
   "30–50% chance": "30–50 % de probabilité",
   "50% or more": "50 % ou plus",
-  "Aurora": "Aurores"
+  "Aurora": "Aurores",
+  "Peak chance {percent}%": "Probabilité maximale {percent} %"
 }
